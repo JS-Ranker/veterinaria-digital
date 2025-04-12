@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar class="barra">
+    <ion-title>Crear Usuario</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" class="fondo">
+  <form [formGroup]="usuarioForm" (ngSubmit)="checkForm()">
+
+    <ion-item>
+      <ion-label position="floating">Correo</ion-label>
+      <ion-input type="email" formControlName="correo" required></ion-input>
+      <div *ngIf="usuarioForm.get('correo')?.invalid && (usuarioForm.get('correo')?.touched || usuarioForm.get('correo')?.dirty)">
+        <small *ngIf="usuarioForm.get('correo')?.errors?.['required']" style="color: red;">El correo es requerido.</small>
+        <small *ngIf="usuarioForm.get('correo')?.errors?.['email']" style="color: red;">El correo debe ser válido.</small>
+      </div>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input type="password" formControlName="contrasena" required></ion-input>
+      <div *ngIf="usuarioForm.get('contrasena')?.invalid && (usuarioForm.get('contrasena')?.touched || usuarioForm.get('contrasena')?.dirty)">
+        <small *ngIf="usuarioForm.get('contrasena')?.errors?.['required']" style="color: red;">La contraseña es requerida.</small>
+      </div>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input formControlName="nombre" required></ion-input>
+      <div *ngIf="usuarioForm.get('nombre')?.invalid && (usuarioForm.get('nombre')?.touched || usuarioForm.get('nombre')?.dirty)">
+        <small *ngIf="usuarioForm.get('nombre')?.errors?.['required']" style="color: red;">El nombre es requerido.</small>
+      </div>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Apellido</ion-label>
+      <ion-input formControlName="apellido" required></ion-input>
+      <div *ngIf="usuarioForm.get('apellido')?.invalid && (usuarioForm.get('apellido')?.touched || usuarioForm.get('apellido')?.dirty)">
+        <small *ngIf="usuarioForm.get('apellido')?.errors?.['required']" style="color: red;">El apellido es requerido.</small>
+      </div>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Carrera</ion-label>
+      <ion-input formControlName="carrera" required></ion-input>
+      <div *ngIf="usuarioForm.get('carrera')?.invalid && (usuarioForm.get('carrera')?.touched || usuarioForm.get('carrera')?.dirty)">
+        <small *ngIf="usuarioForm.get('carrera')?.errors?.['required']" style="color: red;">La carrera es requerida.</small>
+      </div>
+    </ion-item>
+
+    <ion-button expand="full" type="submit" class="boton">Crear Usuario</ion-button>
+    
+    <ion-button expand="full" color="secondary" (click)="irALogin()">Ir a Login</ion-button>
+
+    <ion-item *ngIf="mensaje">
+      <ion-label style="color: red;">{{ mensaje }}</ion-label>
+    </ion-item>
+  </form>
+</ion-content>
