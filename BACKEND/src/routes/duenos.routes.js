@@ -9,12 +9,11 @@ import { TraerDueno, CrearDueno, DesactivarDueno, ActivarDueno, updateDueno } fr
 // Crea una nueva instancia de Router
 const router = Router();
 
-// Define la ruta GET para obtener todos los dueños
-// Cuando se realiza una solicitud GET a /api/duenos, se ejecuta la función getDuenos
+//Ruta para Ver Todos los dueños
 router.get('/', TraerDueno);
 
-// Define la ruta POST para crear un nuevo dueño
-// Cuando se realiza una solicitud POST a /api/duenos, se ejecuta la función createDueno
+
+//Ruta para Crear un dueño 
 router.post('/', CrearDueno);
 
 //Ruta para desactivar un dueño con el ID
