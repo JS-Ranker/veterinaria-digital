@@ -5,6 +5,19 @@ import db from '../config/db.js';
 // Define el modelo 'Dueno' con métodos para interactuar con la base de datos
 const Dueno = {
 
+  update: (id, data, callback) => {
+    const query = `
+      UPDATE duenos 
+      SET nombre = ?, email = ?, telefono = ?, password = ?
+      WHERE id = ?
+    `;
+    const values = [data.nombre, data.email, data.telefono, data.password, id];
+    db.query(query, values, callback);
+  },
+  
+
+
+
 activar: (id,callback) => {
   const query = "UPDATE duenos SET activo = 1 WHERE id = ?";
   db.query(query,[id],callback)
