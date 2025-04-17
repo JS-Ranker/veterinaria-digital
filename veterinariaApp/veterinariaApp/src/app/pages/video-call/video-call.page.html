@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title style="color: white;">Videollamada</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" style="--background: #f3e5f5;">
+  <h2 style="text-align: center; color: #6a1b9a;">Sala de consulta virtual</h2>
+
+  <div id="local-video" style="width: 100%; height: 300px; background: black; border-radius: 10px; margin-top: 20px;"></div>
+
+  <!-- Botón para unirse a la llamada -->
+  <ion-button expand="full" color="success" (click)="initAgora()">Unirse a la llamada</ion-button>
+
+  <!-- Botón para salir de la llamada -->
+  <ion-button expand="full" color="danger" (click)="leaveChannel()">Salir de la llamada</ion-button>
+
+  <!-- Botón para volver al inicio (Bienvenida) -->
+  <ion-button size="small" fill="clear" color="medium" (click)="volverInicio()">Volver al inicio</ion-button>
+</ion-content>

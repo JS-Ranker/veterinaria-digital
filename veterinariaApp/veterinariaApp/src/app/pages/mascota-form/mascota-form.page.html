@@ -1,0 +1,56 @@
+<!-- src/app/pages/mascota-form/mascota-form.page.html -->
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Registrar Mascota</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form (ngSubmit)="guardarMascota()" #form="ngForm">
+    <ion-item>
+      <ion-label position="floating">Nombre de la Mascota</ion-label>
+      <ion-input 
+        [(ngModel)]="mascota.nombre" 
+        name="nombre" 
+        required 
+        #nombre="ngModel">
+      </ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="nombre.invalid && nombre.touched">
+      El nombre es obligatorio.
+    </ion-text>
+
+    <ion-item>
+      <ion-label position="floating">Tipo de Mascota</ion-label>
+      <ion-input 
+        [(ngModel)]="mascota.tipo" 
+        name="tipo" 
+        required 
+        #tipo="ngModel">
+      </ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="tipo.invalid && tipo.touched">
+      El tipo de mascota es obligatorio.
+    </ion-text>
+
+    <ion-item>
+      <ion-label position="floating">Edad</ion-label>
+      <ion-input 
+        type="number" 
+        [(ngModel)]="mascota.edad" 
+        name="edad" 
+        required 
+        min="1" 
+        #edad="ngModel">
+      </ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="edad.invalid && edad.touched">
+      La edad debe ser un número mayor a 0.
+    </ion-text>
+
+    <ion-button expand="full" type="submit" [disabled]="form.invalid">
+      Registrar Mascota
+    </ion-button>
+  </form>
+</ion-content>

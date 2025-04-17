@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Bienvenido</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- Logo de la Veterinaria -->
+  <div class="logo-container" style="text-align: center;">
+    <img src="assets/img/logo.jpg" alt="Logo Veterinaria" style="width: 200px; height: auto;">
+  </div>
+
+  <!-- Texto de bienvenida -->
+  <div class="welcome-text" style="text-align: center; margin-top: 20px;">
+    <h2 style="color: white;">Bienvenido a Happy Pet</h2>
+
+  </div>
+
+  <!-- Botones de acción -->
+  <div class="button-container" style="margin-top: 30px; text-align: center;">
+    <ion-button expand="full" (click)="irALogin()">Iniciar sesión</ion-button>
+    <ion-button expand="full" (click)="irARegistro()">¿No tienes cuenta? Regístrate</ion-button>
+    <ion-button expand="full" color="primary" (click)="irAVideoCall()">Ir a Videollamada</ion-button>
+
+  </div>
+</ion-content>
