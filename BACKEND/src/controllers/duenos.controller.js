@@ -1,9 +1,5 @@
-// src/controllers/duenos.controller.js
-
-// Importa el modelo 'Dueno' que maneja la lógica para interactuar con la base de datos
 import Dueno from '../models/duenos.model.js';
 
-// ver a los Dueños
 export const TraerDueno = (req, res) => {
   Dueno.traer((err, results) => {
     if (err) {
@@ -13,16 +9,14 @@ export const TraerDueno = (req, res) => {
   });
 };
 
-// Crear un Dueño
 export const CrearDueno = (req, res) => {
-  const { nombre, email, telefono, password } = req.body;
+  const { rut, nombre, apellido, email, telefono, password } = req.body;
 
-  // Validación de campos requeridos
-  if (!nombre || !email || !telefono || !password) {
+  if (!rut || !nombre || !apellido || !email || !telefono || !password) {
     return res.status(400).json({ error: 'Faltan campos requeridos' });
   }
 
-  Dueno.crear({ nombre, email, telefono, password }, (err, result) => {
+  Dueno.crear({ rut, nombre, apellido, email, telefono, password }, (err, result) => {
     if (err) {
       return res.status(500).json({ error: 'Error al crear dueño', detalle: err });
     }
@@ -30,7 +24,6 @@ export const CrearDueno = (req, res) => {
   });
 };
 
-//Desactivar un dueño
 export const DesactivarDueno = (req, res) => {
   const { id } = req.params;
 
@@ -45,7 +38,6 @@ export const DesactivarDueno = (req, res) => {
   });
 };
 
-//Activar Dueño
 export const ActivarDueno = (req, res) => {
   const { id } = req.params;
 
@@ -60,17 +52,15 @@ export const ActivarDueno = (req, res) => {
   });
 };
 
-//Modificar Dueño
-
 export const updateDueno = (req, res) => {
   const { id } = req.params;
-  const { nombre, email, telefono, password } = req.body;
+  const { rut, nombre, apellido, email, telefono, password } = req.body;
 
-  if (!nombre || !email || !telefono || !password) {
+  if (!rut || !nombre || !apellido || !email || !telefono || !password) {
     return res.status(400).json({ error: 'Faltan campos requeridos' });
   }
 
-  Dueno.update(id, { nombre, email, telefono, password }, (err, result) => {
+  Dueno.update(id, { rut, nombre, apellido, email, telefono, password }, (err, result) => {
     if (err) {
       return res.status(500).json({ error: 'Error al actualizar dueño', detalle: err });
     }

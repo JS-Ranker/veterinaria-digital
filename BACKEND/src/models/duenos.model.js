@@ -1,62 +1,65 @@
-
-// Importa la configuración de la base de datos desde el archivo 'db.js'
 import db from '../config/db.js';
 
-// Define el modelo 'Dueno' con métodos para interactuar con la base de datos
 const Dueno = {
+  traer: (callback) => {
+    const sql = `
+      SELECT id, rut, nombre, apellido, email, telefono, password, fecha_registro, activo
+      FROM duenos
+      ORDER BY id ASC
+    `;
+    db.query(sql, callback);
+  },
 
-  update: (id, data, callback) => {
-    const query = `
-      UPDATE duenos 
-      SET nombre = ?, email = ?, telefono = ?, password = ?
+  crear: (datos, callback) => {
+    const sql = `
+      INSERT INTO duenos
+        (rut, nombre, apellido, email, telefono, password, fecha_registro, activo)
+      VALUES (?, ?, ?, ?, ?, ?, NOW(), 1)
+    `;
+    const params = [
+      datos.rut,
+      datos.nombre,
+      datos.apellido,
+      datos.email,
+      datos.telefono,
+      datos.password
+    ];
+    db.query(sql, params, callback);
+  },
+
+  update: (id, datos, callback) => {
+    const sql = `
+      UPDATE duenos
+      SET
+        rut = ?,
+        nombre = ?,
+        apellido = ?,
+        email = ?,
+        telefono = ?,
+        password = ?
       WHERE id = ?
     `;
-    const values = [data.nombre, data.email, data.telefono, data.password, id];
-    db.query(query, values, callback);
+    const params = [
+      datos.rut,
+      datos.nombre,
+      datos.apellido,
+      datos.email,
+      datos.telefono,
+      datos.password,
+      id
+    ];
+    db.query(sql, params, callback);
   },
-  
 
+  desactivar: (id, callback) => {
+    const sql = `UPDATE duenos SET activo = 0 WHERE id = ?`;
+    db.query(sql, [id], callback);
+  },
 
-
-activar: (id,callback) => {
-  const query = "UPDATE duenos SET activo = 1 WHERE id = ?";
-  db.query(query,[id],callback)
-},
-
-
-desactivar: (id,callback) => {
-  const query = "UPDATE duenos SET activo = 0 WHERE id = ?";
-  db.query(query, [id], callback);
-},
-
-
-  // Método para obtener todos los dueños de la base de datos
-traer: (callback) => {
-    // Consulta SQL para seleccionar ciertos campos de la tabla 'duenos'
-    const query = 'SELECT id, nombre, email, telefono, fecha_registro, activo FROM duenos';
-    
-    // Ejecuta la consulta y pasa los resultados al callback
-    db.query(query, callback);
-},
-
-  // Método para crear un nuevo dueño en la base de datos
-crear: (data, callback) => {
-    // Consulta SQL para insertar un nuevo dueño en la tabla 'duenos'
-    const query = `
-    INSERT INTO duenos (nombre, email, telefono, password, fecha_registro, activo)
-    VALUES (?, ?, ?, ?, NOW(), 1)
-    `;
-    
-    // Arreglo con los valores que se insertarán en la base de datos
-    const values = [data.nombre, data.email, data.telefono, data.password];
-    
-    // Ejecuta la consulta con los valores proporcionados y pasa el resultado al callback
-    db.query(query, values, callback);
-}
-
-
-
+  activar: (id, callback) => {
+    const sql = `UPDATE duenos SET activo = 1 WHERE id = ?`;
+    db.query(sql, [id], callback);
+  }
 };
 
-// Exporta el modelo 'Dueno' para que pueda ser utilizado en otros archivos
 export default Dueno;
