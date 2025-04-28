@@ -1,0 +1,7 @@
+{
+  "name": "app-veterinaria",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

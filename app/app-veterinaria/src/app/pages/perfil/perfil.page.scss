@@ -1,0 +1,65 @@
+ion-header {
+    --background: #5e35b1; /* Fondo morado oscuro */
+  }
+  
+  ion-toolbar {
+    --background: #5e35b1; /* Fondo morado oscuro en la barra */
+    --color: white; /* Título en blanco */
+  }
+  
+  ion-title {
+    color: white; /* Título "Registro" en blanco */
+  }
+  
+  ion-content {
+    --background: #d8a7f6; /* Fondo morado-rosado para la página */
+  }
+  
+  ion-button {
+    --background: #5e35b1; /* Botón morado */
+    --color: white; /* Texto del botón en blanco */
+  }
+  
+  ion-toolbar {
+    --background: #6a1b9a; /* Un color morado oscuro */
+  }
+  
+  .titulo-bienvenida {
+    color: white; /* Asegúrate de que el título sea blanco */
+  }
+  
+  .bienvenida-titulo {
+    font-size: 1.8rem; /* Tamaño de fuente para el título de bienvenida */
+    color: white; /* Texto blanco */
+    font-weight: bold;
+    margin-top: 20px;
+  }
+  
+  ion-button {
+    --background: #6a1b9a; /* Color morado para los botones */
+    --color: white; /* Texto blanco */
+    --border-radius: 10px; /* Bordes redondeados */
+    margin-top: 15px;
+  }
+  
+  ion-button:hover {
+    --background: #9c4dcc; /* Un morado más claro al hacer hover */
+  }
+  
+  .logo-container img {
+    border-radius: 50%; /* Si quieres que el logo sea redondo */
+  }
+  
+  ion-content {
+    color: white; /* Asegura que el texto se vea blanco sobre el fondo */
+  }
+  
+
+
+
+  .logo-barra {
+    height: 30px;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+  

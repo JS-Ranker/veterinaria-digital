@@ -1,18 +1,25 @@
-import { Router } from 'express';
+import express from 'express';
 import {
-  TraerDueno,
-  CrearDueno,
-  DesactivarDueno,
-  ActivarDueno,
-  updateDueno
-} from '../controllers/duenos.controller.js';
+    loginDueno,
+    TraerDuenos,
+    CrearDueno,
+    ActualizarDueno,
+    DesactivarDueno,
+    activarDueno,
+    TraerDuenoPorRut
+  } from '../controllers/duenos.controller.js';
+  
 
-const router = Router();
+const router = express.Router();
 
-router.get('/', TraerDueno);
+router.get('/', TraerDuenos);
 router.post('/', CrearDueno);
-router.put('/:id/desactivar', DesactivarDueno);
-router.put('/:id/activar', ActivarDueno);
-router.put('/:id', updateDueno);
+router.put('/:rut', ActualizarDueno);
+router.put('/desactivar/:rut', DesactivarDueno);
+router.put('/activar/:rut', activarDueno);
+router.get('/:rut', TraerDuenoPorRut);
+
+router.post('/login', loginDueno);
 
 export default router;
+ 
