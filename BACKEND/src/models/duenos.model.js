@@ -3,9 +3,9 @@ import db from '../config/db.js';
 const Dueno = {
   traer: (callback) => {
     const sql = `
-      SELECT id, rut, nombre, apellido, email, telefono, password, fecha_registro, activo
+      SELECT rut, nombre, apellido, email, telefono, password, fecha_registro, activo
       FROM duenos
-      ORDER BY id ASC
+      ORDER BY rut ASC
     `;
     db.query(sql, callback);
   },
@@ -21,44 +21,64 @@ const Dueno = {
       datos.nombre,
       datos.apellido,
       datos.email,
-      datos.telefono,
+      datos.telefono || null,
       datos.password
     ];
     db.query(sql, params, callback);
   },
 
-  update: (id, datos, callback) => {
+  update: (rut, datos, callback) => {
     const sql = `
       UPDATE duenos
       SET
-        rut = ?,
         nombre = ?,
         apellido = ?,
         email = ?,
         telefono = ?,
         password = ?
-      WHERE id = ?
+      WHERE rut = ?
     `;
     const params = [
-      datos.rut,
       datos.nombre,
       datos.apellido,
       datos.email,
-      datos.telefono,
+      datos.telefono || null,
       datos.password,
-      id
+      rut
     ];
     db.query(sql, params, callback);
   },
 
-  desactivar: (id, callback) => {
-    const sql = `UPDATE duenos SET activo = 0 WHERE id = ?`;
-    db.query(sql, [id], callback);
+  desactivar: (rut, callback) => {
+    const sql = `UPDATE duenos SET activo = 0 WHERE rut = ?`;
+    db.query(sql, [rut], callback);
   },
 
-  activar: (id, callback) => {
-    const sql = `UPDATE duenos SET activo = 1 WHERE id = ?`;
-    db.query(sql, [id], callback);
+  activar: (rut, callback) => {
+    const sql = `UPDATE duenos SET activo = 1 WHERE rut = ?`;
+    db.query(sql, [rut], callback);
+  },
+
+  buscarPorRut: (rut, callback) => {
+    const sql = `SELECT rut, password, activo FROM duenos WHERE rut = ?`;
+    db.query(sql, [rut], (err, result) => {
+      if (err) return callback(err, null);
+      if (result.length === 0) return callback(null, null);
+      return callback(null, result[0]);
+    });
+  },
+
+  buscarDatosPorRut: (rut, callback) => {
+    const sql = `
+      SELECT rut, nombre, apellido, email, telefono
+      FROM duenos
+      WHERE rut = ?
+    `;
+    db.query(sql, [rut], (err, result) => {
+      if (err) return callback(err, null);
+      if (result.length === 0) return callback(null, null);
+      return callback(null, result[0]);
+    });
   }
 };
 
