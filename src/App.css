@@ -1,0 +1,80 @@
+/* src/assets/css/App.css */
+:root {
+  --primary-color: #4b3f72; /* Color principal púrpura oscuro */
+  --secondary-color: #ff9a76; /* Color secundario salmón */
+  --accent-color: #3f3f72; /* Color de acento azul púrpura */
+  --background-light: #f8f9fa; /* Fondo claro */
+  --text-dark: #343a40; /* Texto oscuro */
+  --text-light: #f8f9fa; /* Texto claro */
+}
+
+body {
+  background-color: var(--background-light);
+  color: var(--text-dark);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Estilos para el header */
+#menu-principal {
+  background-color: var(--primary-color);
+  color: var(--text-light);
+}
+
+.navbar-brand,
+.nav-link {
+  color: var(--text-light) !important;
+}
+
+.btn-primary {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #e08b67;
+  border-color: #e08b67;
+}
+
+/* Estilos para formularios */
+.card {
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-control {
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  padding: 12px 15px;
+}
+
+.form-control:focus {
+  border-color: var(--secondary-color);
+  box-shadow: 0 0 0 0.25rem rgba(255, 154, 118, 0.25);
+}
+
+/* Estilos específicos para el carrusel */
+.carousel-item {
+  height: 60vh;
+}
+
+.carousel-item img {
+  object-fit: cover;
+  filter: brightness(0.7);
+}
+
+.carousel-caption {
+  bottom: 30%;
+}
+
+/* Estilos para la sección de sobre nosotros */
+.about-section {
+  background-color: white;
+  border-radius: 15px;
+  padding: 30px;
+  margin-top: -50px;
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
