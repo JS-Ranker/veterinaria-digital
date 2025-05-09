@@ -262,7 +262,7 @@ const Register = () => {
               <div className={styles.logo}>
                 <FaPaw />
               </div>
-              <h1 className={styles.brandName}>PetCare</h1>
+              <h1 className={styles.brandName}>HappyPet</h1>
             </div>
             
             <div className={styles.welcomeText}>
