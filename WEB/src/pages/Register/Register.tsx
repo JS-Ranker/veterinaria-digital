@@ -230,21 +230,16 @@ const Register = () => {
   
     setIsSubmitting(true);
   
-    try {
-      // Simulación de la respuesta exitosa para pruebas
-      // En producción, descomentar la línea de abajo:
-      // const response = await apiService.crearDueno(formData);
-      
-      // Para pruebas, comentar la línea de arriba y usar esta:
-      setTimeout(() => {
-        setRegistrationSuccess(true);
-        setIsSubmitting(false);
-      }, 1500);
-    } catch (error: any) {
-      console.error("Error en registro:", error);
-      alert(error.response?.data?.error || "Error al registrar el dueño");
-      setIsSubmitting(false);
-    }
+ try {
+  const response = await apiService.crearDueno(formData);
+  setRegistrationSuccess(true);
+  setIsSubmitting(false);
+} catch (error: any) {
+  console.error("Error en registro:", error);
+  alert(error.response?.data?.error || "Error al registrar el dueño");
+  setIsSubmitting(false);
+}
+
   };
   
   return (

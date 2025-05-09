@@ -8,11 +8,7 @@ dotenv.config();
 
 const app = express();
 
-import cors from 'cors';
 app.use(cors());
-
-
-
 app.use(express.json());
 
 app.use('/api/duenos', duenosRoutes);
