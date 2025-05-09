@@ -8,7 +8,7 @@ import {
     activarDueno,
     TraerDuenoPorRut
   } from '../controllers/duenos.controller.js';
-  
+   
 
 const router = express.Router();
 

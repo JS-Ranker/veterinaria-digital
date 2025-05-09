@@ -13,9 +13,10 @@ export const TraerDuenos = (req, res) => {
 // Crear un dueño
 export const CrearDueno = (req, res) => {
   const datos = req.body;
-
+  console.log('Datos recibidos:', datos);
   Dueno.crear(datos, (err, result) => {
     if (err) {
+      console.error('Error específico al crear dueño:', err);
       return res.status(500).json({ error: 'Error al crear el dueño', detalle: err });
     }
     res.status(201).json({ mensaje: 'Dueño creado exitosamente', id: result.insertId });
