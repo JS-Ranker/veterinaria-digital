@@ -279,7 +279,7 @@ const Register = () => {
           <div className={styles.rightPanel}>
             <div className={styles.formHeader}>
               <Link to="/login" className={styles.backLink}>
-                <FaArrowLeft /> <span>Volver al login</span>
+                <FaArrowLeft /> <span> </span>
               </Link>
               <h2 className={styles.formTitle}>Registro de Dueño</h2>
             </div>
