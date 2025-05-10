@@ -1,0 +1,295 @@
+/* Paleta de colores para Veterinaria
+Color primario: Azul turquesa suave - #2FB8C6
+Color secundario: Verde menta claro - #A9E5BB
+Color de acento: Naranja coral suave - #FF8C70
+Fondo claro: Blanco cálido - #FAFAF9
+Texto principal: Gris oscuro - #333333
+Texto secundario: Gris medio - #666666
+*/
+
+/* Animaciones */
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes float {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes wave {
+    0% {
+      transform: translateX(0) translateZ(0);
+    }
+    50% {
+      transform: translateX(-25px) translateZ(0);
+    }
+    100% {
+      transform: translateX(0) translateZ(0);
+    }
+  }
+  
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  /* Estilos del footer */
+  .footer {
+    position: relative;
+    background-color: #2FB8C6;
+    color: #FAFAF9;
+    padding: 80px 0 40px;
+    margin-top: 120px;
+    overflow: hidden;
+    animation: fadeIn 1.2s ease-in-out;
+  }
+  
+  .footerWave {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+    z-index: 1;
+  }
+  
+  .footerWave svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 100px;
+    animation: wave 15s ease-in-out infinite;
+  }
+  
+  .waveFill {
+    fill: #2FB8C6;
+  }
+  
+  .footerContent {
+    position: relative;
+    z-index: 2;
+  }
+  
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+  
+  .footerGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    margin-bottom: 50px;
+  }
+  
+  .footerColumn {
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  .footerLogo {
+    display: flex;
+    align-items: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #FAFAF9;
+  }
+  
+  .logoIcon {
+    font-size: 2rem;
+    margin-right: 10px;
+    animation: float 4s ease-in-out infinite;
+  }
+  
+  .footerDesc {
+    color: rgba(250, 250, 249, 0.8);
+    line-height: 1.6;
+    margin-bottom: 25px;
+  }
+  
+  .footerHeading {
+    color: #FAFAF9;
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+  }
+  
+  .footerHeading::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background-color: #A9E5BB;
+    transition: width 0.3s ease;
+  }
+  
+  .footerColumn:hover .footerHeading::after {
+    width: 80px;
+  }
+  
+  .footerLinks {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .footerLinks li {
+    margin-bottom: 12px;
+  }
+  
+  .footerLink {
+    color: rgba(250, 250, 249, 0.8);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    padding-left: 15px;
+    display: inline-block;
+  }
+  
+  .footerLink::before {
+    content: '>';
+    position: absolute;
+    left: 0;
+    transition: transform 0.3s ease;
+  }
+  
+  .footerLink:hover {
+    color: #FAFAF9;
+    transform: translateX(5px);
+  }
+  
+  .footerLink:hover::before {
+    transform: translateX(3px);
+  }
+  
+  .footerContact {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .contactItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+  }
+  
+  .contactItem:hover {
+    transform: translateX(5px);
+  }
+  
+  .contactIcon {
+    margin-right: 10px;
+    color: #A9E5BB;
+  }
+  
+  .socialLinks {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+  }
+  
+  .socialIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(250, 250, 249, 0.1);
+    color: #FAFAF9;
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+  }
+  
+  .socialIcon:hover {
+    background-color: #A9E5BB;
+    color: #2FB8C6;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(169, 229, 187, 0.4);
+  }
+  
+  .footerBottomBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 30px;
+    border-top: 1px solid rgba(250, 250, 249, 0.1);
+  }
+  
+  .copyright {
+    color: rgba(250, 250, 249, 0.7);
+    margin: 0;
+    font-size: 0.9rem;
+  }
+  
+  .footerBottomLinks {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .bottomLink {
+    color: rgba(250, 250, 249, 0.7);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+  }
+  
+  .bottomLink:hover {
+    color: #FF8C70;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .footerGrid {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+    
+    .footerBottomBar {
+      flex-direction: column;
+      gap: 15px;
+      text-align: center;
+    }
+    
+    .footer {
+      padding: 60px 0 30px;
+      margin-top: 80px;
+    }
+    
+    .footerWave svg {
+      height: 70px;
+    }
+    
+    .footerWave {
+      top: -69px;
+    }
+  }
