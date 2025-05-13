@@ -4,14 +4,16 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import User from "./pages/User";
-import AddPet from "./pages/AddPet";
+import Header from "./components/common/Header/Header";
+import Footer from "./components/common/Footer/Footer";
+import Home from "./pages/Home/Home";
+import Login from "./pages/Login/Login";
+import Register from "./pages/Register/Register";
+import User from "./pages/User/User";
+import AddPet from "./pages/AddPet/AddPet";
+import Shop from "./pages/Shop/Shop"; // Importa el componente Shop
 import "./App.css";
+import "animate.css";
 
 // Componente para proteger rutas
 const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
@@ -27,6 +29,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/shop" element={<Shop />} /> {/* Nueva ruta para Shop */}
         <Route
           path="/user"
           element={
