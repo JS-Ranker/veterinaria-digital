@@ -1,5 +1,6 @@
 import { Carousel } from "react-bootstrap";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // <-- NUEVO
 import "bootstrap/dist/css/bootstrap.min.css";
 import styles from "./CarouselBanner.module.css";
 
@@ -7,6 +8,7 @@ const CarouselBanner = () => {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  const navigate = useNavigate(); // <-- NUEVO
 
   const totalSlides = 3;
 
@@ -16,7 +18,6 @@ const CarouselBanner = () => {
     setTimeout(() => setIsTransitioning(false), 600);
   };
 
-  // Efecto de animación para los indicadores personalizados
   useEffect(() => {
     const interval = !isHovered
       ? setInterval(() => {
@@ -81,7 +82,7 @@ const CarouselBanner = () => {
         </Carousel.Item>
       </Carousel>
 
-      {/* Control arrows personalizados */}
+      {/* Flechas de navegación */}
       <div className={styles.customControls}>
         <button
           className={styles.controlPrev}
@@ -99,7 +100,7 @@ const CarouselBanner = () => {
         </button>
       </div>
 
-      {/* Indicadores personalizados */}
+      {/* Indicadores */}
       <div className={styles.customIndicators}>
         {[...Array(totalSlides)].map((_, index) => (
           <button
@@ -112,7 +113,7 @@ const CarouselBanner = () => {
         ))}
       </div>
 
-      {/* Mensaje principal basado en el slide activo */}
+      {/* Mensajes */}
       <div className={styles.mainMessageOverlay}>
         {activeIndex === 0 && (
           <div
@@ -134,7 +135,10 @@ const CarouselBanner = () => {
           >
             <h1>Todo para tu mascota en un solo lugar</h1>
             <p>Productos de calidad con entrega rápida a domicilio</p>
-            <button className={styles.mainActionButton}>
+            <button
+              className={styles.mainActionButton}
+              onClick={() => navigate("/shop")}
+            >
               Visitar nuestra tienda
             </button>
           </div>
