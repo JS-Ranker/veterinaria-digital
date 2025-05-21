@@ -1,0 +1,33 @@
+.splash-screen {
+    --background: #2FB8C6;  /* Puedes cambiar el color de fondo aquí */
+  
+    .logo-container {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+  
+    .blink-text {
+      color: orange;  /* Color naranja */
+      font-size: 36px;
+      font-weight: bold;
+      animation: blink 1.5s infinite;  /* Animación para el efecto de prender y apagar */
+      margin-bottom: 20px;
+    }
+  
+    img {
+      width: 250px;  /* Tamaño del logo */
+      height: auto;
+      max-width: 80%;
+    }
+  
+    /* Animación para el parpadeo */
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+  }
+  

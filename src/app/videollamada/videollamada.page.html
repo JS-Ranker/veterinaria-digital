@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar style="--background: #A9E5BB;">
+    <ion-title>Video-Conferencias-Veterinarias Rr</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Input del nombre del canal -->
+  <ion-item>
+    <ion-label position="floating">Nombre del canal</ion-label>
+    <ion-input [(ngModel)]="channelName"></ion-input>
+  </ion-item>
+
+  <!-- GRILLA DE VIDEOS -->
+  <div class="video-container">
+    <!-- Local Participant -->
+    <div class="participant" id="user-local" [class.speaking]="isLocalSpeaking">
+      <div id="local-player" class="video-box"></div>
+      <div class="participant-footer">
+        <span class="participant-name">Yo</span>
+        <span class="signal-icon">📶📶📶📶</span>
+      </div>
+    </div>
+
+    <!-- Participant principal en foco (video grande) -->
+    
+
+    <!-- Participantes remotos (se agregan dinámicamente en JS/TS) -->
+    <div id="remote-container" class="remote-grid"></div>
+  </div>
+
+  <!-- BOTONES -->
+  <ion-grid>
+    <ion-row class="ion-justify-content-center ion-padding">
+      <ion-button color="success" (click)="startCall()" [disabled]="inCall || !channelName">Iniciar</ion-button>
+      <ion-button color="danger" (click)="leaveCall()" [disabled]="!inCall">Salir</ion-button>
+    </ion-row>
+
+    <ion-row class="ion-justify-content-center">
+      <ion-button (click)="toggleMic()">
+        <ion-icon slot="start" [name]="isMuted ? 'mic-off' : 'mic'"></ion-icon>
+        {{ isMuted ? 'Activar micrófono' : 'Silenciar micrófono' }}
+      </ion-button>
+      <ion-button (click)="toggleVideo()">
+        <ion-icon slot="start" [name]="isCameraOff ? 'videocam-off' : 'videocam'"></ion-icon>
+        {{ isCameraOff ? 'Activar cámara' : 'Apagar cámara' }}
+      </ion-button>
+      
+      <ion-button (click)="stopScreenShare()" *ngIf="isSharingScreen">
+        <ion-icon slot="start" name="stop-circle-outline"></ion-icon>
+        Detener compartir pantalla
+      </ion-button>
+    </ion-row>
+  </ion-grid>
+</ion-content>

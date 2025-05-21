@@ -1,0 +1,218 @@
+:host {
+  --background: transparent;
+}
+
+ion-content {
+  --background: none;
+  background: url('/assets/img/portada.png') no-repeat center center / cover;
+}
+
+
+.titulo-bienvenida {
+  color: white;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.contenido {
+  background-color: rgba(0, 0, 0, 0.5); // fondo oscuro semitransparente
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  margin: 40% auto 0;
+  width: 90%;
+  color: white;
+}
+
+
+ion-toolbar {
+  --background: #2FB8C6; /* Un color morado oscuro */
+}
+
+.titulo-bienvenida {
+  color: white; /* Asegúrate de que el título sea blanco */
+}
+
+.bienvenida-titulo {
+  font-size: 1.8rem; /* Tamaño de fuente para el título de bienvenida */
+  color: white; /* Texto blanco */
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+ion-button {
+  --background: #A9E5BB; /* Color morado para los botones */
+  --color: white; /* Texto blanco */
+  --border-radius: 10px; /* Bordes redondeados */
+  margin-top: 15px;
+}
+
+ion-button:hover {
+  --background: #2FB8C6 /* Un morado más claro al hacer hover */
+}
+
+.logo-container img {
+  border-radius: 50%; /* Si quieres que el logo sea redondo */
+}
+
+ion-content {
+  color: white; /* Asegura que el texto se vea blanco sobre el fondo */
+}
+
+ion-toolbar {
+  --background: #A9E5BB; /* Color de fondo de la barra superior */
+}
+
+ion-title {
+  color: white; /* Color blanco para el texto del título */
+}
+
+
+/* bienvenido.page.scss */
+h2 {
+color: white; /* Asegura que el texto sea blanco */
+font-size: 36px; /* Aumenta el tamaño de la fuente */
+font-weight: bold; /* Hace el texto más grueso */
+text-align: center; /* Asegura que el texto esté centrado */
+margin-top: 20px; /* Un pequeño margen superior */
+}
+
+
+.logo-container img {
+animation: fadeIn 1.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+from {
+  opacity: 0;
+  transform: scale(0.8);
+}
+to {
+  opacity: 1;
+  transform: scale(1);
+}
+}
+
+.boton-login {
+--border-radius: 20px;
+width: 200px;
+max-width: 80%;
+margin: 0 auto 15px auto;
+display: block;
+height: 45px;
+font-size: 16px;
+--background: #A9E5BB; // Puedes cambiar el color si quieres
+}
+
+.boton-videollamada {
+--border-radius: 20px; /* Bordes redondeados */
+--height: 40px; /* Alto del botón */
+padding-left: 15px; /* Espaciado a la izquierda */
+padding-right: 15px; /* Espaciado a la derecha */
+font-size: 14px; /* Tamaño de la fuente más pequeño */
+margin: 10px auto; /* Márgenes para centrado */
+--background: #28a745; /* Verde profesional */
+--color: white; /* Color blanco para el texto */
+--padding-top: 0; /* Reduce el padding superior */
+--padding-bottom: 0; /* Reduce el padding inferior */
+}
+
+
+
+
+.welcome-text {
+text-align: center;
+margin-top: 20px;
+
+p {
+  color: white;
+  font-size: 14px; // Tamaño más pequeño y profesional
+  margin-bottom: 10px;
+}
+}
+
+.link-registro {
+color: #28a745; /* Verde profesional */
+font-size: 14px;
+text-decoration: underline;
+cursor: pointer;
+}
+
+.link-registro {
+color: #28a745; /* Verde profesional */
+font-size: 14px;
+text-decoration: underline;
+cursor: pointer;
+}
+
+.link-registro {
+color: #dc3545; /* Rojo profesional */
+font-size: 14px;
+text-decoration: underline;
+cursor: pointer;
+}
+
+.link-registro:hover {
+color: #c82333; /* Rojo más oscuro al pasar el mouse */
+}
+
+
+
+
+
+
+.logo-barra {
+height: 35px;
+width: auto;
+border-radius: 8px;
+}
+
+
+
+.blink-text {
+color: orange;  /* Color naranja */
+font-size: 36px;
+font-weight: bold;
+animation: blink 1.5s infinite;  /* Animación para el efecto de prender y apagar */
+text-align: center;
+margin-bottom: 20px;  /* Espaciado entre el texto y el logo */
+}
+
+/* Animación para el parpadeo */
+@keyframes blink {
+0%, 100% { opacity: 1; }
+50% { opacity: 0; }
+}
+
+
+.blink-text {
+font-size: 36px;
+font-weight: bold;
+animation: blink 5s infinite;  /* Animación para el efecto de parpadeo y cambio de color */
+text-align: center;
+margin-bottom: 20px;  /* Espaciado entre el texto y el logo */
+}
+
+/* Animación para el parpadeo y el cambio de color */
+@keyframes blink {
+0%, 100% { 
+  opacity: 1; 
+  color: orange; /* Color naranja */
+}
+25% { 
+  opacity: 0; 
+  color: #A9E5BB; /* Color azul */
+}
+50% { 
+  opacity: 1; 
+  color: red; /* Color rojo */
+}
+75% { 
+  opacity: 0; 
+  color: black; /* Color negro */
+}
+100% { 
+  opacity: 1; 
+  color: yellow; /* Color amarillo */
+}
+}

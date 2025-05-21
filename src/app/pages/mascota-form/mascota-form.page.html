@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>🐾🐾🐾Registrar Mascota🐾🐾🐾</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  
+  
+  <ion-card class="card-container">
+    <ion-card-header>
+      <ion-card-title class="titulo-card">Formulario de Mascota</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form (ngSubmit)="guardarMascota()" #form="ngForm">
+        
+        <ion-item class="campo-redondeado">
+          <ion-label position="floating">Nombre de la Mascota</ion-label>
+          <ion-input 
+            [(ngModel)]="mascota.nombre" 
+            name="nombre" 
+            required 
+            #nombre="ngModel">
+          </ion-input>
+        </ion-item>
+        <ion-text color="danger" *ngIf="nombre.invalid && nombre.touched">
+          <p>El nombre es obligatorio.</p>
+        </ion-text>
+
+        <ion-item class="campo-redondeado">
+          <ion-label position="floating">Tipo de Mascota</ion-label>
+          <ion-input 
+            [(ngModel)]="mascota.tipo" 
+            name="tipo" 
+            required 
+            #tipo="ngModel">
+          </ion-input>
+        </ion-item>
+        <ion-text color="danger" *ngIf="tipo.invalid && tipo.touched">
+          <p>El tipo de mascota es obligatorio.</p>
+        </ion-text>
+
+        <ion-item class="campo-redondeado">
+          <ion-label position="floating">Edad</ion-label>
+          <ion-input 
+            type="number" 
+            [(ngModel)]="mascota.edad" 
+            name="edad" 
+            required 
+            min="1" 
+            #edad="ngModel">
+          </ion-input>
+        </ion-item>
+        <ion-text color="danger" *ngIf="edad.invalid && edad.touched">
+          <p>La edad debe ser un número mayor a 0.</p>
+        </ion-text>
+
+        <ion-button class="registrar-mascota" expand="full" type="submit" [disabled]="form.invalid">
+          Registrar Mascota
+        </ion-button>
+        <ion-button fill="clear" size="small" (click)="irABienvenido()">
+          ⬅️ Volver a Inicio
+        </ion-button>
+
+
+
+        
+        
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

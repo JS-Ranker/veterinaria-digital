@@ -1,0 +1,79 @@
+/* Grilla responsive para videos remotos */
+.remote-grid {
+  display: flex;
+flex-wrap: wrap; /* Permite que los elementos salten a la siguiente fila si no caben */
+gap: 10px;
+margin-top: 10px;
+background-color: #2FB8C6;
+border-radius: 10px;
+padding: 10px;
+width: 100%;
+box-sizing: border-box;
+justify-content: center; /* Centra los videos horizontalmente (opcional) */
+ /* Para que el padding no afecte el tamaño total */
+}
+
+/* Contenedor de cada participante */
+.participant {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/*/* Caja de video */
+.video-box {
+  width: 100%;
+  aspect-ratio: 16 / 9; /* Proporción del video */
+  background-color: #2FB8C6; /* Azul turquesa suave */
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Video grande principal */
+.large-video {
+  grid-column: span 2; /* Ocupa dos columnas en la grilla */
+  height: auto;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover; /* Ajuste del video al contenedor */
+  background-color: #A9E5BB; /* Verde menta claro */
+  border-radius: 10px;
+  margin-bottom: 0; /* Elimina el margen inferior */
+}
+
+/* Footer del participante */
+.participant-footer {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  color: #FAFAF9; /* Blanco cálido para el texto */
+  font-size: 14px;
+  font-weight: bold;
+  z-index: 3;
+  background: rgba(51, 51, 51, 0.7); /* Fondo gris oscuro con opacidad */
+  padding: 4px 6px;
+  border-radius: 4px;
+}
+
+
+
+
+#large-player:empty {
+  display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

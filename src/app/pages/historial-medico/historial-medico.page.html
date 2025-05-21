@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      <img src="assets/img/Logo.jpeg" alt="Logo" class="logo-barra" />
+      🐾Historial Medico de tu Mascota
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding">
+
+  <ion-item class="campo-redondeado">
+    <ion-label position="floating">Correo del usuario</ion-label>
+    <ion-input [(ngModel)]="correo"></ion-input>
+  </ion-item>
+
+  <ion-item class="campo-redondeado">
+    <ion-label position="floating">Nombre de la mascota</ion-label>
+    <ion-input [(ngModel)]="mascotaNombre"></ion-input>
+  </ion-item>
+
+  <ion-item class="campo-redondeado">
+    <ion-label position="floating">Nueva entrada médica</ion-label>
+    <ion-textarea [(ngModel)]="nuevaEntrada"></ion-textarea>
+  </ion-item>
+
+  <ion-button class="boton-estilo" (click)="agregarEntrada()">Agregar</ion-button>
+  <ion-button class="boton-estilo" (click)="verHistorial()">Ver historial</ion-button>
+
+  <ion-button class="boton-estilo" fill="outline" (click)="volverAperfil()">
+    <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
+    Volver
+  </ion-button>
+
+  <ion-list *ngIf="historial.length > 0">
+    <ion-list-header>
+      <ion-label>Historial Médico</ion-label>
+    </ion-list-header>
+    <ion-item *ngFor="let entrada of historial">
+      {{ entrada }}
+    </ion-item>
+  </ion-list>
+</ion-content>

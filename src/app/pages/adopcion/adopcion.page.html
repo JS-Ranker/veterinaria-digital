@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>🐾Adopción de Mascotas🐾</ion-title>
+  </ion-toolbar>
+  <ion-img src="assets/img/adoptame.jpeg" class="header-img"></ion-img>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- Texto de introducción con título destacado -->
+  <div class="intro-text">
+    <h2 class="titulo-adopcion">Happy Pett y Huella Animal queremos ofrecerte una vida en adopción</h2>
+
+    <p>
+      ¿Buscas adoptar y dar hogar a un animal rescatado? Todos ellos eran animales abandonados en las calles que fueron rescatados y rehabilitados, recibiendo atención para mejorar su salud física y emocional.
+    </p>
+    <p>
+      Todos están listos para encontrar a una nueva familia que los quiera y los cuide.
+    </p>
+  </div>
+
+  <!-- Lista de perros disponibles -->
+  <ion-card *ngFor="let perro of perros" class="perro-card">
+    <img [src]="perro.foto" alt="Foto de {{ perro.nombre }}" class="perro-foto" />
+
+    <ion-card-header>
+      <ion-card-title (click)="redirigirFormularioAdopcion()" class="perro-nombre">
+        {{ perro.nombre }}
+      </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p>{{ perro.descripcion }}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Botón para regresar al Bienvenido -->
+  <ion-button fill="clear" size="small" color="primary" (click)="irABienvenido()">
+    Regresar a Inicio
+  </ion-button>
+
+</ion-content>

@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <img src="assets/img/Logo.jpeg" alt="Logo" class="logo-barra">
+    </ion-buttons>
+    
+    <ion-title>🐾🐾Bienvenidosxx🐾🐾</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- Logo de la Veterinaria -->
+  <h2 class="blink-text">Bienvenido a Happy Pet</h2>
+  <div class="logo-container" style="text-align: center;">
+    <img src="assets/img/Logo.jpeg" alt="Logo Veterinaria" style="width: 200px; height: auto;">
+  </div>
+
+  <!-- Texto de bienvenida -->
+  <div class="welcome-text">
+    <p>¡Atención médica sin complicaciones!</p>
+    <p>365 días al año, en horarios extendidos</p>
+    <p>Diversas especialidades</p>
+  </div>
+
+  <!-- Botones de acción -->
+  <div class="button-container" style="margin-top: 30px; text-align: center;">
+    <ion-button class="boton-login" (click)="irALogin()">Iniciar sesión</ion-button>
+    <p><a class="link-registro" (click)="irARegistro()">Si no eres usuario, regístrate</a></p>
+
+    <ion-button class="boton-videollamada" size="small" (click)="irAVideoCall()">
+      <ion-icon name="videocam-outline" slot="start"></ion-icon>
+      Ir a Videollamada
+    </ion-button>
+
+    <!-- Botón "Adopta" con imagen -->
+    <ion-button expand="block" color="primary" routerLink="/adopcion">
+      <img src="assets/img/boton.jpeg" alt="Adopta una Mascota" style="width: 30px; height: auto; margin-right: 10px;">
+      🐾 Adopta una Mascota
+    </ion-button>
+
+    <!-- Botón de WhatsApp flotante -->
+    <!-- Este es el botón flotante de WhatsApp -->
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button color="success" (click)="abrirWhatsApp()">
+        <ion-icon name="logo-whatsapp"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+    
+  </div>
+</ion-content>
