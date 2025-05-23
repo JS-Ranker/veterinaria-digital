@@ -1,15 +1,13 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>
-      <img src="assets/img/Logo.jpeg" alt="Logo" class="logo-barra" />
-      🐾Historial Medico de tu Mascota
-    </ion-title>
+    <ion-buttons slot="start">
+      <img src="assets/img/Logo.jpeg" alt="Logo" class="logo-barra" style="width: 40px; height: 40px; border-radius: 50%;">
+    </ion-buttons>
+    <ion-title>🐾Historial Médico de tu Mascota</ion-title>
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content class="ion-padding">
-
   <ion-item class="campo-redondeado">
     <ion-label position="floating">Correo del usuario</ion-label>
     <ion-input [(ngModel)]="correo"></ion-input>

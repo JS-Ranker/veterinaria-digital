@@ -93,7 +93,9 @@ export class AppComponent {
     });
 
     PushNotifications.addListener('pushNotificationActionPerformed', (notification: ActionPerformed) => {
-      alert('Acción realizada con la notificación: ' + JSON.stringify(notification));
-    });
+  // Aquí ya no se muestra ningún mensaje
+  // Puedes dejarlo vacío o manejar redirección si quieres más adelante
+  console.log('Notificación pulsada:', notification);
+});
   }
 }

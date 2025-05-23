@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <img src="assets/img/Logo.jpeg" alt="Logo" class="logo-barra" style="width: 40px; height: 40px; border-radius: 50%;">
+    </ion-buttons>
+    <ion-title>Agendar Visita</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-label position="floating">RUT del dueño</ion-label>
+    <ion-input [(ngModel)]="form.rutDueno" type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Nombre de la mascota</ion-label>
+    <ion-input [(ngModel)]="form.nombreMascota" type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Tipo de mascota</ion-label>
+    <ion-segment [(ngModel)]="form.tipoMascota">
+      <ion-segment-button value="Perro">
+        <img src="assets/img/caricaturaperro.jpeg" alt="Perro" style="width: 24px; height: 24px; margin-right: 6px; border-radius: 50%;">
+        Perro
+      </ion-segment-button>
+      <ion-segment-button value="Gato">
+        <img src="assets/img/caricaturagato.jpeg" alt="Gato" style="width: 24px; height: 24px; margin-right: 6px; border-radius: 50%;">
+        Gato
+      </ion-segment-button>
+    </ion-segment>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Especialidad</ion-label>
+    <ion-select [(ngModel)]="form.especialidad">
+      <ion-select-option value="Cardiología">Cardiología</ion-select-option>
+      <ion-select-option value="Oncología">Oncología</ion-select-option>
+      <ion-select-option value="Endocrinología">Endocrinología</ion-select-option>
+      <ion-select-option value="Gastroenterología">Gastroenterología</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Fecha</ion-label>
+    <ion-datetime presentation="date" [(ngModel)]="form.fecha"></ion-datetime>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Hora</ion-label>
+    <ion-datetime presentation="time" [(ngModel)]="form.hora"></ion-datetime>
+  </ion-item>
+
+  <ion-button expand="full" (click)="guardar()">Guardar Agendamiento</ion-button>
+</ion-content>

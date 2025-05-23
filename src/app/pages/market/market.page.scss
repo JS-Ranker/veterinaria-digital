@@ -1,0 +1,21 @@
+.market-content {
+  background-color: #2FB8C6;
+  color: black;
+
+  h2 {
+    font-weight: bold;
+    margin-bottom: 12px;
+  }
+
+  p {
+    margin-bottom: 24px;
+  }
+}
+
+/* Reusar clase para el logo en el header */
+.logo-barra {
+  height: 28px;
+  width: auto;
+  border-radius: 50%;
+  margin-right: 10px;
+}

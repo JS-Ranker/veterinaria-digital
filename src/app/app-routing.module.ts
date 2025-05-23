@@ -46,6 +46,22 @@ const routes: Routes = [
   {
     path: 'videollamada',
     loadChildren: () => import('./videollamada/videollamada.module').then( m => m.VideollamadaPageModule)
+  },
+  {
+    path: 'especialidades',
+    loadChildren: () => import('./pages/especialidades/especialidades.module').then( m => m.EspecialidadesPageModule)
+  },
+  {
+    path: 'agendar-visita',
+    loadChildren: () => import('./pages/agendar-visita/agendar-visita.module').then( m => m.AgendarVisitaPageModule)
+  },
+  {
+    path: 'home',
+    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
+  },
+  {
+    path: 'market',
+    loadChildren: () => import('./pages/market/market.module').then( m => m.MarketPageModule)
   }
 ];
 

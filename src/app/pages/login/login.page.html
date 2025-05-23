@@ -1,31 +1,31 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      <img src="assets/img/Logo.jpeg" alt="Logo" class="logo-barra" />
-      🐾Ingresa
-    </ion-title>
+  <ion-toolbar style="--background: #A9E5BB; --color: black;">
+    <ion-buttons slot="start">
+      <img src="assets/img/Logo.jpeg" alt="Logo" class="logo-barra" style="width: 40px; height: 40px; border-radius: 50%;">
+    </ion-buttons>
+    <ion-title>🐾 Ingresa</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content class="ion-padding" style="background-color: #2FB8C6; color: black;">
   <!-- Imagen de portada -->
-  <div class="portada-container">
-    <img src="assets/img/portada.png" alt="Portada" class="portada-img">
+  <div class="portada-container" style="text-align:center; margin-bottom: 20px;">
+    <img src="assets/img/portada.png" alt="Portada" class="portada-img" style="max-width: 100%; height: auto;">
   </div>
 
   <!-- Formulario de inicio de sesión -->
   <form (ngSubmit)="login()">
     <ion-item>
-      <ion-label position="floating">Correo electrónico</ion-label>
-      <ion-input [(ngModel)]="usuario.correo" name="correo" type="email" required></ion-input>
+      <ion-label position="floating" style="color: black;">Correo electrónico</ion-label>
+      <ion-input [(ngModel)]="usuario.correo" name="correo" type="email" required style="color: black;"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label position="floating">Contraseña</ion-label>
-      <ion-input [(ngModel)]="usuario.password" name="password" type="password" required></ion-input>
+      <ion-label position="floating" style="color: black;">Contraseña</ion-label>
+      <ion-input [(ngModel)]="usuario.password" name="password" type="password" required style="color: black;"></ion-input>
     </ion-item>
 
-    <ion-button class="boton-login" type="submit">Iniciar sesión</ion-button>
+    <ion-button class="boton-login" type="submit" expand="block" style="margin-top: 20px;">Iniciar sesión</ion-button>
 
     <ion-button class="boton-recuperar" fill="clear" size="small" (click)="irARecuperar()">
       ¿Olvidaste tu contraseña?

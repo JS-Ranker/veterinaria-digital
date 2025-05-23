@@ -1,0 +1,43 @@
+.especialidad-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  @media(min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.texto {
+  flex: 1;
+  color: white;
+  padding-right: 2rem; /* Más espacio para separar texto e imagen */
+}
+
+.imagen {
+  flex: 1.5; /* Más espacio para la imagen */
+  display: flex;
+  justify-content: center;
+
+  img.portada-img {
+    width: 100%;
+    max-width: 700px;  /* Foto más grande */
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    object-fit: cover;
+  }
+}
+
+ion-content {
+  --background: #2FB8C6;
+  color: white;
+}
+
+ion-button {
+  --background: #A9E5BB;  /* color verde claro */
+  --color: white;
+  --border-radius: 10px;
+  margin-top: 15px;
+}

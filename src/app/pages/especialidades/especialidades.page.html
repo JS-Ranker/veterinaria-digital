@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar style="--background: #A9E5BB; --color: white;">
+    <ion-buttons slot="start">
+      <img src="assets/img/Logo.jpeg" alt="Logo" class="logo-barra" style="width: 40px; height: 40px; border-radius: 50%;">
+    </ion-buttons>
+    <ion-title>Especialidades</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <h2 class="titulo-bienvenida">Conoce nuestras especialidades</h2>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-md="6">
+        <ion-card button (click)="goTo('oncologia')">
+          <img src="assets/img/oncologiaa.jpeg" alt="Oncología" class="portada-img" />
+          <ion-card-header>
+            <ion-card-title>Oncología</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="12" size-md="6">
+        <ion-card button (click)="goTo('endocrinologia')">
+          <img src="assets/img/endocrinologia.jpeg" alt="Endocrinología" class="portada-img" />
+          <ion-card-header>
+            <ion-card-title>Endocrinología</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="12" size-md="6">
+        <ion-card button (click)="goTo('gastroenterologia')">
+          <img src="assets/img/gasteorontologiaa.jpeg" alt="Gastroenterología" class="portada-img" />
+          <ion-card-header>
+            <ion-card-title>Gastroenterología</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="12" size-md="6">
+        <ion-card button (click)="goTo('cardiologia')">
+          <img src="assets/img/cardiologiaa.jpeg" alt="Cardiología" class="portada-img" />
+          <ion-card-header>
+            <ion-card-title>Cardiología</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

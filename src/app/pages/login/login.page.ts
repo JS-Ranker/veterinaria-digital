@@ -25,7 +25,7 @@ export class LoginPage {
   
     if (usuarioEncontrado) {
       await this.storageService.set('usuario_actual', usuarioEncontrado.correo);
-      this.router.navigateByUrl('/perfil');
+      this.router.navigateByUrl('/home');
     } else {
       alert('Credenciales incorrectas');
     }

@@ -1,0 +1,31 @@
+ion-content {
+  --background: #2FB8C6; /* fondo azul */
+  color: black; /* texto negro */
+
+  ion-label, ion-segment-button, ion-select, ion-input, ion-datetime {
+    color: black; /* etiquetas y textos de inputs en negro */
+  }
+
+  ion-button {
+    --background: #A9E5BB; /* botón verde claro */
+    --color: black; /* texto negro en botón para buen contraste */
+    margin-top: 20px;
+  }
+}
+
+ion-toolbar {
+  --background: #A9E5BB; /* navbar verde claro */
+  --color: black; /* texto navbar negro */
+}
+
+
+ion-segment-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  img {
+    border-radius: 50%;
+  }
+}

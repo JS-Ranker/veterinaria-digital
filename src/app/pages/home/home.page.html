@@ -1,0 +1,114 @@
+<ion-header>
+  <ion-toolbar style="--background: #A9E5BB;">
+    <ion-title>
+      <img src="assets/img/Logo.jpeg" alt="Logo" class="logo-barra" />
+      🏠 Inicio
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" style="background-color: #2FB8C6; color: black;">
+  <p class="saludo">¡Hola! Bienvenido a Happy Pett 🐾</p>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-md="4">
+        <ion-card button (click)="irAMarket()" class="home-card">
+          <img src="assets/img/market.jpeg" alt="Market" class="home-img" />
+          <ion-card-header>
+            <ion-card-title>Market</ion-card-title>
+            <ion-card-subtitle>Productos para tu mascota</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="12" size-md="4">
+        <ion-card button (click)="irAEspecialidades()" class="home-card">
+          <img src="assets/img/especialidades.jpeg" alt="Especialidades" class="home-img" />
+          <ion-card-header>
+            <ion-card-title>Especialidades</ion-card-title>
+            <ion-card-subtitle>Atención veterinaria experta</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="12" size-md="4">
+        <ion-card button (click)="irAPerfil()" class="home-card">
+          <img src="assets/img/ir a perfil.jpeg" alt="Perfil" class="home-img" />
+          <ion-card-header>
+            <ion-card-title>Mi Perfil</ion-card-title>
+            <ion-card-subtitle>Administra tu cuenta y mascotas</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <!-- Nueva fila para el botón de adopción -->
+    <ion-row>
+      <ion-col size="12" size-md="4">
+        <ion-card button (click)="irAAdoptame()" class="home-card">
+          <img src="assets/img/adoptame.jpeg" alt="Adóptame" class="home-img" />
+          <ion-card-header>
+            <ion-card-title>Adóptame</ion-card-title>
+            <ion-card-subtitle>Encuentra a tu nueva mascota</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<style>
+  .logo-barra {
+    height: 28px;
+    width: auto;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+
+  ion-content {
+    --background: #2FB8C6 !important;
+    color: black;
+  }
+
+  .saludo {
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+    margin: 16px;
+    text-align: center;
+  }
+
+  .home-card {
+    --background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease;
+  }
+
+  .home-card:hover {
+    transform: scale(1.05);
+  }
+
+  .home-img {
+    width: 100%;
+    height: 110px;
+    object-fit: cover;
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+  }
+
+  ion-card-title {
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 8px;
+    color: #222;
+  }
+
+  ion-card-subtitle {
+    font-size: 14px;
+    text-align: center;
+    color: #666;
+    margin-bottom: 12px;
+  }
+</style>
