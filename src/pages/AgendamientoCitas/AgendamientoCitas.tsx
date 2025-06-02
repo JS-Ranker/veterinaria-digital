@@ -1,71 +1,120 @@
 import { useState } from "react";
+import {
+  FaPaw,
+  FaCalendarAlt,
+  FaClock,
+  FaUser,
+  FaDog,
+  FaCat,
+  FaArrowLeft,
+  FaArrowRight,
+  FaCheck,
+} from "react-icons/fa";
 import styles from "./AgendamientoCitas.module.css";
 
 const AgendamientoCitas = () => {
-  const [step, setStep] = useState(1);
-  const [ownerRut, setOwnerRut] = useState("");
-  const [petName, setPetName] = useState("");
+  const [step, setStep] = useState<number>(1);
+  const [ownerRut, setOwnerRut] = useState<string>("");
+  const [petName, setPetName] = useState<string>("");
   const [petType, setPetType] = useState<"PERRO" | "GATO" | null>(null);
-  const [selectedSpecialties, setSelectedSpecialties] = useState<string[]>([]);
+  const [selectedSpecialty, setSelectedSpecialty] = useState<string | null>(
+    null
+  );
+  const [currentMonth, setCurrentMonth] = useState<number>(
+    new Date().getMonth()
+  );
+  const [currentYear, setCurrentYear] = useState<number>(
+    new Date().getFullYear()
+  );
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
-
-  // Datos de ejemplo para el calendario (mayo 2025)
-  const currentMonth = new Date(2025, 4); // Mayo 2025 (0-11)
-  const monthName = currentMonth.toLocaleString("es-ES", { month: "long" });
-  const year = currentMonth.getFullYear();
-
-  const daysInMonth = new Date(2025, 5, 0).getDate(); // 31 días en mayo
-  const firstDayOfMonth = new Date(2025, 4, 1).getDay(); // Día de la semana del 1 de mayo
-
-  // Generar días del mes
-  const days = [];
-  for (let i = 0; i < firstDayOfMonth; i++) {
-    days.push(null); // Días vacíos para alinear el calendario
-  }
-  for (let i = 1; i <= daysInMonth; i++) {
-    days.push(new Date(2025, 4, i));
-  }
+  const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
 
   // Especialidades disponibles
   const specialties = [
-    "Cardiologia",
-    "Oncologia",
-    "Endocrinologia",
-    "Gastroenterologia",
+    "Cardiología",
+    "Oncología",
+    "Endocrinología",
+    "Gastroenterología",
+    "Dermatología",
+    "Oftalmología",
   ];
 
   // Horarios disponibles
   const timeSlots = [
-    "6:00 - 7:00",
-    "7:00 - 8:00",
-    "8:00 - 9:00 (a.m.)",
-    "9:00 - 10:00 (a.m.)",
-    "10:00 - 11:00 (a.m.)",
-    "11:00 - 12:00 (a.m.)",
-    "12:00 - 13:00 (p.m.)",
-    "13:00 - 14:00 (p.m.)",
-    "14:00 - 15:00 (p.m.)",
-    "15:00 - 16:00 (p.m.)",
-    "16:00 - 17:00 (p.m.)",
-    "17:00 - 18:00 (p.m.)",
+    "08:00 - 09:00",
+    "09:00 - 10:00",
+    "10:00 - 11:00",
+    "11:00 - 12:00",
+    "12:00 - 13:00",
+    "13:00 - 14:00",
+    "14:00 - 15:00",
+    "15:00 - 16:00",
+    "16:00 - 17:00",
+    "17:00 - 18:00",
   ];
 
-  const handleSpecialtyToggle = (specialty: string) => {
-    if (selectedSpecialties.includes(specialty)) {
-      setSelectedSpecialties(
-        selectedSpecialties.filter((s) => s !== specialty)
-      );
-    } else {
-      setSelectedSpecialties([...selectedSpecialties, specialty]);
+  // Generar años disponibles (actual hasta 2026)
+  const availableYears = Array.from(
+    { length: 3 },
+    (_, i) => new Date().getFullYear() + i
+  );
+
+  // Obtener nombre del mes
+  const getMonthName = (monthIndex: number) => {
+    return new Date(currentYear, monthIndex).toLocaleString("es-ES", {
+      month: "long",
+    });
+  };
+
+  // Generar días del mes actual
+  const generateCalendarDays = () => {
+    const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+    const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
+
+    const days = [];
+
+    // Días vacíos para alinear el calendario
+    for (let i = 0; i < firstDayOfMonth; i++) {
+      days.push(null);
     }
+
+    // Días del mes
+    for (let i = 1; i <= daysInMonth; i++) {
+      days.push(new Date(currentYear, currentMonth, i));
+    }
+
+    return days;
+  };
+
+  const handleMonthChange = (increment: number) => {
+    let newMonth = currentMonth + increment;
+    let newYear = currentYear;
+
+    if (newMonth > 11) {
+      newMonth = 0;
+      newYear++;
+    } else if (newMonth < 0) {
+      newMonth = 11;
+      newYear--;
+    }
+
+    setCurrentMonth(newMonth);
+    setCurrentYear(newYear);
+  };
+
+  const handleYearChange = (year: number) => {
+    setCurrentYear(year);
   };
 
   const handleDateSelect = (date: Date | null) => {
     if (date) {
       setSelectedDate(date);
-      setStep(3); // Avanzar a selección de hora
     }
+  };
+
+  const handleSpecialtySelect = (specialty: string) => {
+    setSelectedSpecialty(specialty === selectedSpecialty ? null : specialty);
   };
 
   const handleSubmit = () => {
@@ -74,21 +123,68 @@ const AgendamientoCitas = () => {
       ownerRut,
       petName,
       petType,
-      selectedSpecialties,
+      selectedSpecialty,
       selectedDate,
       selectedTime,
     });
-    alert("Cita agendada exitosamente!");
+
+    setIsSubmitted(true);
   };
+
+  const resetForm = () => {
+    setStep(1);
+    setOwnerRut("");
+    setPetName("");
+    setPetType(null);
+    setSelectedSpecialty(null);
+    setSelectedDate(null);
+    setSelectedTime(null);
+    setIsSubmitted(false);
+  };
+
+  const days = generateCalendarDays();
+  const monthName = getMonthName(currentMonth);
+
+  if (isSubmitted) {
+    return (
+      <div className={styles.container}>
+        <div className={styles.confirmationMessage}>
+          <div className={styles.confirmationIcon}>
+            <FaCheck />
+          </div>
+          <h2 className={styles.confirmationTitle}>¡Cita Agendada!</h2>
+          <p className={styles.confirmationText}>
+            Hemos programado la cita para{" "}
+            {selectedDate?.toLocaleDateString("es-ES", {
+              weekday: "long",
+              day: "numeric",
+              month: "long",
+              year: "numeric",
+            })}{" "}
+            a las {selectedTime}.
+          </p>
+          <button
+            className={`${styles.button} ${styles.primaryButton}`}
+            onClick={resetForm}
+          >
+            Agendar Nueva Cita
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Agendar Visita</h1>
+      <h1 className={styles.title}>
+        <FaPaw /> Agendar Cita Veterinaria
+      </h1>
 
+      {/* Paso 1: Información del dueño y mascota */}
       {step === 1 && (
         <div className={styles.formSection}>
           <div className={styles.sectionTitle}>
-            <span>RUT del dueño</span>
+            <FaUser /> Información del Dueño
           </div>
           <input
             type="text"
@@ -99,19 +195,17 @@ const AgendamientoCitas = () => {
           />
 
           <div className={styles.sectionTitle}>
-            <span>Nombre de la mascota</span>
+            <FaPaw /> Información de la Mascota
           </div>
           <input
             type="text"
             className={styles.inputField}
-            placeholder="Ingrese nombre de la mascota"
+            placeholder="Nombre de la mascota"
             value={petName}
             onChange={(e) => setPetName(e.target.value)}
           />
 
-          <div className={styles.sectionTitle}>
-            <span>Tipo de mascota</span>
-          </div>
+          <div className={styles.sectionTitle}>Tipo de Mascota</div>
           <div className={styles.petTypeSelector}>
             <div
               className={`${styles.petTypeButton} ${
@@ -119,7 +213,7 @@ const AgendamientoCitas = () => {
               }`}
               onClick={() => setPetType("PERRO")}
             >
-              PERRO
+              <FaDog /> PERRO
             </div>
             <div
               className={`${styles.petTypeButton} ${
@@ -127,7 +221,7 @@ const AgendamientoCitas = () => {
               }`}
               onClick={() => setPetType("GATO")}
             >
-              GATO
+              <FaCat /> GATO
             </div>
           </div>
 
@@ -135,52 +229,76 @@ const AgendamientoCitas = () => {
             <button
               className={`${styles.button} ${styles.secondaryButton}`}
               onClick={() => setStep(1)}
+              disabled
             >
-              Cancelar
+              <FaArrowLeft /> Atrás
             </button>
             <button
               className={`${styles.button} ${styles.primaryButton}`}
               onClick={() => setStep(2)}
               disabled={!ownerRut || !petName || !petType}
             >
-              Siguiente
+              Siguiente <FaArrowRight />
             </button>
           </div>
         </div>
       )}
 
+      {/* Paso 2: Selección de especialidad y fecha */}
       {step === 2 && (
         <div className={styles.formSection}>
           <div className={styles.sectionTitle}>
-            <span>Tipo de mascota: {petType}</span>
+            <FaPaw /> Especialidad Médica
           </div>
 
-          <div className={styles.sectionTitle}>
-            <span>Especialidad</span>
-          </div>
-          <div className={styles.specialtyCheckboxes}>
+          <div className={styles.specialtyRadio}>
             {specialties.map((specialty) => (
-              <label key={specialty} className={styles.checkboxLabel}>
-                <input
-                  type="checkbox"
-                  className={styles.checkboxInput}
-                  checked={selectedSpecialties.includes(specialty)}
-                  onChange={() => handleSpecialtyToggle(specialty)}
-                />
+              <div
+                key={specialty}
+                className={`${styles.radioOption} ${
+                  selectedSpecialty === specialty ? styles.selected : ""
+                }`}
+                onClick={() => handleSpecialtySelect(specialty)}
+              >
+                <div className={styles.radioInput} />
                 {specialty}
-              </label>
+              </div>
             ))}
           </div>
 
           <div className={styles.sectionTitle}>
-            <span>Fecha</span>
+            <FaCalendarAlt /> Seleccione Fecha
+          </div>
+
+          <div className={styles.calendarHeader}>
             <div className={styles.calendarNav}>
-              <button className={styles.calendarNavButton}>&lt;</button>
+              <button
+                className={styles.calendarNavButton}
+                onClick={() => handleMonthChange(-1)}
+              >
+                <FaArrowLeft />
+              </button>
               <span className={styles.calendarTitle}>
-                {monthName} de {year}
+                {monthName.charAt(0).toUpperCase() + monthName.slice(1)}
               </span>
-              <button className={styles.calendarNavButton}>&gt;</button>
+              <button
+                className={styles.calendarNavButton}
+                onClick={() => handleMonthChange(1)}
+              >
+                <FaArrowRight />
+              </button>
             </div>
+            <select
+              className={styles.yearSelect}
+              value={currentYear}
+              onChange={(e) => handleYearChange(Number(e.target.value))}
+            >
+              {availableYears.map((year) => (
+                <option key={year} value={year}>
+                  {year}
+                </option>
+              ))}
+            </select>
           </div>
 
           <div className={styles.calendarGrid}>
@@ -196,7 +314,10 @@ const AgendamientoCitas = () => {
                 className={`${styles.calendarDay} ${
                   !day
                     ? styles.empty
-                    : selectedDate && day.getDate() === selectedDate.getDate()
+                    : selectedDate &&
+                      day.getDate() === selectedDate.getDate() &&
+                      day.getMonth() === selectedDate.getMonth() &&
+                      day.getFullYear() === selectedDate.getFullYear()
                     ? styles.selected
                     : ""
                 }`}
@@ -212,41 +333,52 @@ const AgendamientoCitas = () => {
               className={`${styles.button} ${styles.secondaryButton}`}
               onClick={() => setStep(1)}
             >
-              Atrás
+              <FaArrowLeft /> Atrás
             </button>
             <button
               className={`${styles.button} ${styles.primaryButton}`}
-              onClick={() => selectedDate && setStep(3)}
-              disabled={!selectedDate || selectedSpecialties.length === 0}
+              onClick={() => setStep(3)}
+              disabled={!selectedSpecialty || !selectedDate}
             >
-              Siguiente
+              Siguiente <FaArrowRight />
             </button>
           </div>
         </div>
       )}
 
+      {/* Paso 3: Selección de hora y confirmación */}
       {step === 3 && (
         <div className={styles.formSection}>
           <div className={styles.sectionTitle}>
-            <span>Resumen de la cita</span>
+            <FaClock /> Resumen de la Cita
           </div>
-          <p>
-            Mascota: {petName} ({petType})
-          </p>
-          <p>Especialidad(es): {selectedSpecialties.join(", ")}</p>
-          <p>
-            Fecha:{" "}
-            {selectedDate?.toLocaleDateString("es-ES", {
-              weekday: "long",
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
-          </p>
 
-          <div className={styles.sectionTitle}>
-            <span>Seleccione hora</span>
+          <div className={styles.summaryItem}>
+            <span className={styles.summaryLabel}>Mascota</span>
+            <span className={styles.summaryValue}>
+              {petName} ({petType})
+            </span>
           </div>
+
+          <div className={styles.summaryItem}>
+            <span className={styles.summaryLabel}>Especialidad</span>
+            <span className={styles.summaryValue}>{selectedSpecialty}</span>
+          </div>
+
+          <div className={styles.summaryItem}>
+            <span className={styles.summaryLabel}>Fecha seleccionada</span>
+            <span className={styles.summaryValue}>
+              {selectedDate?.toLocaleDateString("es-ES", {
+                weekday: "long",
+                day: "numeric",
+                month: "long",
+                year: "numeric",
+              })}
+            </span>
+          </div>
+
+          <div className={styles.sectionTitle}>Horarios Disponibles</div>
+
           <div className={styles.timeSlots}>
             {timeSlots.map((time) => (
               <div
@@ -266,14 +398,14 @@ const AgendamientoCitas = () => {
               className={`${styles.button} ${styles.secondaryButton}`}
               onClick={() => setStep(2)}
             >
-              Atrás
+              <FaArrowLeft /> Atrás
             </button>
             <button
               className={`${styles.button} ${styles.primaryButton}`}
               onClick={handleSubmit}
               disabled={!selectedTime}
             >
-              Guardar Agendamiento
+              Confirmar Cita <FaCheck />
             </button>
           </div>
         </div>

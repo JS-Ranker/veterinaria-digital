@@ -4,16 +4,19 @@
   margin: 2rem auto;
   padding: 2rem;
   background: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .title {
   color: #2fb8c6;
   text-align: center;
   margin-bottom: 2rem;
-  font-size: 2rem;
+  font-size: 2.2rem;
   text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
 }
 
 .formSection {
@@ -22,36 +25,55 @@
 
 .sectionTitle {
   color: #2fb8c6;
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  margin-bottom: 1.2rem;
+  font-weight: 500;
   display: flex;
   align-items: center;
+  gap: 0.5rem;
+}
+
+.sectionTitle svg {
+  width: 20px;
+  height: 20px;
 }
 
 .inputField {
   width: 100%;
-  padding: 0.8rem;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  margin-bottom: 1rem;
+  padding: 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
   font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.inputField:focus {
+  outline: none;
+  border-color: #2fb8c6;
 }
 
 .petTypeSelector {
   display: flex;
   gap: 1rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .petTypeButton {
   flex: 1;
-  padding: 0.8rem;
-  background: #f5f5f5;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+  padding: 1rem;
+  background: #f8f8f8;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
   text-align: center;
   cursor: pointer;
   transition: all 0.3s ease;
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.petTypeButton:hover {
+  background: #e6f7f9;
 }
 
 .petTypeButton.active {
@@ -64,46 +86,76 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
 }
 
 .calendarTitle {
-  font-weight: bold;
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: #333;
 }
 
 .calendarNav {
   display: flex;
   gap: 1rem;
+  align-items: center;
 }
 
 .calendarNavButton {
-  background: none;
+  background: #f5f5f5;
   border: none;
-  font-size: 1.2rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 1rem;
   cursor: pointer;
   color: #2fb8c6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.calendarNavButton:hover {
+  background: #2fb8c6;
+  color: white;
+}
+
+.yearSelect {
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  background: white;
+  color: #333;
+  font-size: 1rem;
+  margin-left: 0.5rem;
 }
 
 .calendarGrid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 0.5rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .calendarDayHeader {
   text-align: center;
-  font-weight: bold;
-  padding: 0.5rem;
+  font-weight: 600;
+  padding: 0.8rem 0;
   color: #555;
+  font-size: 0.9rem;
 }
 
 .calendarDay {
   text-align: center;
   padding: 0.8rem;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
+  font-weight: 500;
+  border: 2px solid transparent;
 }
 
 .calendarDay:hover {
@@ -113,27 +165,95 @@
 .calendarDay.selected {
   background: #2fb8c6;
   color: white;
+  font-weight: 600;
 }
 
 .calendarDay.empty {
   visibility: hidden;
 }
 
-.timeSlots {
+.calendarDay.disabled {
+  color: #ccc;
+  cursor: not-allowed;
+  background: #f9f9f9;
+}
+
+.specialtyRadio {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
-  margin-top: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.radioOption {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1rem;
+  background: #f8f8f8;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid #e0e0e0;
+}
+
+.radioOption:hover {
+  background: #e6f7f9;
+}
+
+.radioOption.selected {
+  background: #2fb8c6;
+  color: white;
+  border-color: #2fb8c6;
+}
+
+.radioInput {
+  appearance: none;
+  width: 1.2rem;
+  height: 1.2rem;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.radioOption.selected .radioInput {
+  border-color: white;
+  background: white;
+  position: relative;
+}
+
+.radioOption.selected .radioInput::after {
+  content: "";
+  position: absolute;
+  width: 0.6rem;
+  height: 0.6rem;
+  background: #2fb8c6;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.timeSlots {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: 2rem 0;
 }
 
 .timeSlot {
-  padding: 0.8rem;
-  background: #f5f5f5;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+  padding: 1rem;
+  background: #f8f8f8;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
   text-align: center;
   cursor: pointer;
   transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.timeSlot:hover {
+  background: #e6f7f9;
 }
 
 .timeSlot.selected {
@@ -142,38 +262,47 @@
   border-color: #2fb8c6;
 }
 
-.specialtyCheckboxes {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-  margin-top: 1rem;
+.timeSlot.disabled {
+  color: #ccc;
+  cursor: not-allowed;
+  background: #f9f9f9;
 }
 
-.checkboxLabel {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  cursor: pointer;
+.summaryItem {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background: #f8f8f8;
+  border-radius: 8px;
 }
 
-.checkboxInput {
-  width: 1.2rem;
-  height: 1.2rem;
+.summaryLabel {
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 0.3rem;
+  display: block;
+}
+
+.summaryValue {
+  color: #333;
+  font-size: 1.1rem;
 }
 
 .actionButtons {
   display: flex;
-  justify-content: flex-end;
-  gap: 1rem;
+  justify-content: space-between;
   margin-top: 2rem;
 }
 
 .button {
-  padding: 0.8rem 2rem;
-  border-radius: 30px;
+  padding: 1rem 2rem;
+  border-radius: 8px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .primaryButton {
@@ -184,31 +313,70 @@
 
 .primaryButton:hover {
   background: #26a0ac;
-  transform: scale(1.05);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .secondaryButton {
   background: white;
   color: #2fb8c6;
-  border: 1px solid #2fb8c6;
+  border: 2px solid #2fb8c6;
 }
 
 .secondaryButton:hover {
-  background: #f5f5f5;
+  background: #e6f7f9;
+}
+
+.confirmationMessage {
+  text-align: center;
+  padding: 2rem;
+}
+
+.confirmationIcon {
+  font-size: 4rem;
+  color: #4caf50;
+  margin-bottom: 1rem;
+}
+
+.confirmationTitle {
+  font-size: 1.8rem;
+  color: #2fb8c6;
+  margin-bottom: 1rem;
+}
+
+.confirmationText {
+  color: #555;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
   .container {
-    padding: 1rem;
+    padding: 1.5rem;
+    margin: 1rem;
   }
 
-  .specialtyCheckboxes,
+  .specialtyRadio,
   .timeSlots {
     grid-template-columns: 1fr;
   }
 
   .petTypeSelector {
     flex-direction: column;
+  }
+
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .actionButtons {
+    flex-direction: column-reverse;
+    gap: 1rem;
+  }
+
+  .button {
+    width: 100%;
+    justify-content: center;
   }
 }
