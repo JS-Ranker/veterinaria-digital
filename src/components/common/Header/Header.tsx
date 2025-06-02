@@ -75,42 +75,37 @@ const Header = () => {
                 </button>
                 {isSpecialtiesOpen && (
                   <ul className={styles.subMenu}>
-                    <li>
-                      <NavLink
-                        to="/cardiologia"
-                        className={styles.subNavLink}
-                        onClick={closeMenu}
-                      >
-                        Cardiología
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink
-                        to="/endocrinologia"
-                        className={styles.subNavLink}
-                        onClick={closeMenu}
-                      >
-                        Endocrinología
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink
-                        to="/oncologia"
-                        className={styles.subNavLink}
-                        onClick={closeMenu}
-                      >
-                        Oncología
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink
-                        to="/gastroenterologia"
-                        className={styles.subNavLink}
-                        onClick={closeMenu}
-                      >
-                        Gastroenterología
-                      </NavLink>
-                    </li>
+                    <NavLink
+                      to="/cardiologia"
+                      className={styles.subNavLink}
+                      onClick={closeMenu}
+                    >
+                      Cardiología
+                    </NavLink>
+
+                    <NavLink
+                      to="/endocrinologia"
+                      className={styles.subNavLink}
+                      onClick={closeMenu}
+                    >
+                      Endocrinología
+                    </NavLink>
+
+                    <NavLink
+                      to="/oncologia"
+                      className={styles.subNavLink}
+                      onClick={closeMenu}
+                    >
+                      Oncología
+                    </NavLink>
+
+                    <NavLink
+                      to="/gastroenterologia"
+                      className={styles.subNavLink}
+                      onClick={closeMenu}
+                    >
+                      Gastroenterología
+                    </NavLink>
                   </ul>
                 )}
               </li>

@@ -17,6 +17,7 @@ import Cardiologia from "./pages/EspecialidadesPage/Cardiologia/Cardiologia";
 import Endocrinologia from "./pages/EspecialidadesPage/Endocrinologia/Endocrinologia";
 import Gastroenterologia from "./pages/EspecialidadesPage/Gastroenterologia/Gastroenterologia";
 import Oncologia from "./pages/EspecialidadesPage/Oncologia/Oncologia";
+import AgendamientoCitas from "./pages/AgendamientoCitas/AgendamientoCitas";
 
 import "./App.css";
 import "animate.css";
@@ -41,6 +42,7 @@ function App() {
         <Route path="/endocrinologia" element={<Endocrinologia />} />
         <Route path="/gastroenterologia" element={<Gastroenterologia />} />
         <Route path="/oncologia" element={<Oncologia />} />
+        <Route path="/agendamientocitas" element={<AgendamientoCitas />} />
         <Route
           path="/user"
           element={

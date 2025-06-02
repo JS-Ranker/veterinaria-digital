@@ -1,0 +1,214 @@
+/* AgendamientoCitas.module.css */
+.container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  color: #2fb8c6;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  text-transform: uppercase;
+}
+
+.formSection {
+  margin-bottom: 2rem;
+}
+
+.sectionTitle {
+  color: #2fb8c6;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.inputField {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.petTypeSelector {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.petTypeButton {
+  flex: 1;
+  padding: 0.8rem;
+  background: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.petTypeButton.active {
+  background: #2fb8c6;
+  color: white;
+  border-color: #2fb8c6;
+}
+
+.calendarHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.calendarTitle {
+  font-weight: bold;
+}
+
+.calendarNav {
+  display: flex;
+  gap: 1rem;
+}
+
+.calendarNavButton {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #2fb8c6;
+}
+
+.calendarGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.calendarDayHeader {
+  text-align: center;
+  font-weight: bold;
+  padding: 0.5rem;
+  color: #555;
+}
+
+.calendarDay {
+  text-align: center;
+  padding: 0.8rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.calendarDay:hover {
+  background: #e6f7f9;
+}
+
+.calendarDay.selected {
+  background: #2fb8c6;
+  color: white;
+}
+
+.calendarDay.empty {
+  visibility: hidden;
+}
+
+.timeSlots {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.timeSlot {
+  padding: 0.8rem;
+  background: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.timeSlot.selected {
+  background: #2fb8c6;
+  color: white;
+  border-color: #2fb8c6;
+}
+
+.specialtyCheckboxes {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.checkboxInput {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.actionButtons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.button {
+  padding: 0.8rem 2rem;
+  border-radius: 30px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.primaryButton {
+  background: #2fb8c6;
+  color: white;
+  border: none;
+}
+
+.primaryButton:hover {
+  background: #26a0ac;
+  transform: scale(1.05);
+}
+
+.secondaryButton {
+  background: white;
+  color: #2fb8c6;
+  border: 1px solid #2fb8c6;
+}
+
+.secondaryButton:hover {
+  background: #f5f5f5;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .specialtyCheckboxes,
+  .timeSlots {
+    grid-template-columns: 1fr;
+  }
+
+  .petTypeSelector {
+    flex-direction: column;
+  }
+}
