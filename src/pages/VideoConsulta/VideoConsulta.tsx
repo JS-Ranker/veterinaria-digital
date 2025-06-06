@@ -1,128 +1,136 @@
-import React, { useState, useEffect } from "react";
-import AgoraUIKit from "agora-react-uikit";
-import { FaPhoneSlash, FaUserMd, FaPaw, FaSpinner } from "react-icons/fa";
-import styles from "./VideoConsulta.module.css";
-import AgoraRTC from "agora-rtc-sdk";
+import React, { useState, useEffect, useRef } from "react";
+import { AgoraService } from "C:/Users/Alvaro/Documents/GitHub/veterinaria-digital/src/services/videoconsulta";
+import "./VideoConsulta.module.css";
 
-const VideoConsulta = () => {
-  const [videoCall, setVideoCall] = useState(false);
-  const [isVet, setIsVet] = useState(false);
-  const [isInitializing, setIsInitializing] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+const VideoConference: React.FC = () => {
+  const [channelName, setChannelName] = useState("");
+  const [inCall, setInCall] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
+  const [isCameraOff, setIsCameraOff] = useState(false);
+  const agoraServiceRef = useRef<AgoraService | null>(null);
 
-  // Configuración de Agora
-  const rtcProps = {
-    appId: "e7f6e9aeecf14b2ba10e3f40be9f56e7",
-    channel:
-      "consultorio-veterinario-" + Math.random().toString(36).substr(2, 8), // Canal único
-    token: null,
-    role: (isVet ? "host" : "audience") as "host" | "audience",
-  };
+  useEffect(() => {
+    // Inicializar el servicio Agora
+    agoraServiceRef.current = new AgoraService();
 
-  const callbacks = {
-    EndCall: () => {
-      setVideoCall(false);
-      setIsInitializing(false);
-    },
-  };
+    return () => {
+      // Limpiar al desmontar
+      if (agoraServiceRef.current?.isConnected) {
+        agoraServiceRef.current.leave();
+      }
+    };
+  }, []);
 
   const startCall = async () => {
+    if (!channelName.trim()) return;
+
+    // Reemplaza con tu App ID de Agora
+    const appId = "e83d68a7ae864d4a9e920fcaae47fcd5";
     try {
-      setIsInitializing(true);
-      setError(null);
-
-      // Pequeño delay para permitir que la UI se actualice
-      await new Promise((resolve) => setTimeout(resolve, 100));
-
-      setVideoCall(true);
-    } catch (err) {
-      console.error("Error al iniciar la llamada:", err);
-      setError("No se pudo iniciar la videollamada. Intente nuevamente.");
-      setIsInitializing(false);
+      await agoraServiceRef.current?.join(appId, channelName);
+      setInCall(true);
+    } catch (error) {
+      console.error("Error al iniciar la llamada:", error);
     }
   };
 
-  // Verificar si el SDK está cargado
-  useEffect(() => {
-    if (videoCall && !window.AgoraRTC) {
-      setError("El SDK de Agora no se cargó correctamente");
-      setVideoCall(false);
-      setIsInitializing(false);
+  const leaveCall = async () => {
+    try {
+      await agoraServiceRef.current?.leave();
+      setInCall(false);
+    } catch (error) {
+      console.error("Error al salir de la llamada:", error);
     }
-  }, [videoCall]);
+  };
 
-  if (error) {
-    return (
-      <div className={styles.errorContainer}>
-        <h2>Error</h2>
-        <p>{error}</p>
-        <button
-          onClick={() => {
-            setError(null);
-            setIsInitializing(false);
-          }}
-          className={styles.retryButton}
-        >
-          Reintentar
-        </button>
-      </div>
-    );
-  }
+  const toggleMic = () => {
+    if (isMuted) {
+      agoraServiceRef.current?.unmuteAudio();
+    } else {
+      agoraServiceRef.current?.muteAudio();
+    }
+    setIsMuted(!isMuted);
+  };
 
-  return videoCall ? (
-    <div className={styles.videoContainer}>
-      <AgoraUIKit
-        rtcProps={rtcProps}
-        callbacks={callbacks}
-        styleProps={{
-          localBtnContainer: { background: "#2fb8c6" },
-          remoteBtnContainer: { background: "#2fb8c6" },
-          UIKitContainer: { height: "100vh", width: "100vw" },
-        }}
-      />
-    </div>
-  ) : (
-    <div className={styles.preCallContainer}>
-      <h1 className={styles.title}>
-        <FaUserMd /> Consulta Veterinaria Virtual <FaPaw />
-      </h1>
+  const toggleVideo = () => {
+    if (isCameraOff) {
+      agoraServiceRef.current?.enableVideo();
+    } else {
+      agoraServiceRef.current?.disableVideo();
+    }
+    setIsCameraOff(!isCameraOff);
+  };
 
-      <div className={styles.roleSelector}>
-        <label className={styles.roleLabel}>
+  return (
+    <div className="video-conference-container">
+      <header className="conference-header">
+        <div className="logo-container">
+          <img src="assets/img/Logo.jpeg" alt="Logo" className="logo-barra" />
+        </div>
+        <h1>Video-Conferencias-Veterinarias</h1>
+      </header>
+
+      <main className="conference-content">
+        {/* Input del nombre del canal */}
+        <div className="channel-input">
+          <label htmlFor="channelName">Nombre del canal</label>
           <input
-            type="checkbox"
-            checked={isVet}
-            onChange={() => setIsVet(!isVet)}
-            className={styles.roleCheckbox}
+            id="channelName"
+            type="text"
+            value={channelName}
+            onChange={(e) => setChannelName(e.target.value)}
+            disabled={inCall}
           />
-          <span>Soy el veterinario</span>
-        </label>
-      </div>
+        </div>
 
-      <button
-        onClick={startCall}
-        className={styles.startButton}
-        disabled={isInitializing}
-      >
-        {isInitializing ? (
-          <>
-            <FaSpinner className={styles.spinnerIcon} /> Preparando...
-          </>
-        ) : (
-          "Iniciar Video Consulta"
-        )}
-      </button>
+        {/* GRILLA DE VIDEOS */}
+        <div className="video-container">
+          {/* Local Participant */}
+          <div className="participant" id="user-local">
+            <div id="local-player" className="video-box"></div>
+            <div className="participant-footer">
+              <span className="participant-name">Yo</span>
+              <span className="signal-icon">📶📶📶📶</span>
+            </div>
+          </div>
 
-      <div className={styles.requirements}>
-        <h3>Requisitos técnicos:</h3>
-        <ul>
-          <li>Navegador actualizado (Chrome, Firefox, Edge)</li>
-          <li>Permitir acceso a cámara y micrófono</li>
-          <li>Conexión estable a internet</li>
-        </ul>
-      </div>
+          {/* Participantes remotos */}
+          <div id="remote-container" className="remote-grid"></div>
+        </div>
+
+        {/* BOTONES */}
+        <div className="controls-container">
+          <div className="main-buttons">
+            <button
+              onClick={startCall}
+              disabled={inCall || !channelName.trim()}
+              className="btn btn-success"
+            >
+              Iniciar
+            </button>
+            <button
+              onClick={leaveCall}
+              disabled={!inCall}
+              className="btn btn-danger"
+            >
+              Salir
+            </button>
+          </div>
+
+          <div className="secondary-buttons">
+            <button onClick={toggleMic} className="btn btn-control">
+              <span className="icon">{isMuted ? "🎤❌" : "🎤"}</span>
+              {isMuted ? "Activar micrófono" : "Silenciar micrófono"}
+            </button>
+            <button onClick={toggleVideo} className="btn btn-control">
+              <span className="icon">{isCameraOff ? "📷❌" : "📷"}</span>
+              {isCameraOff ? "Activar cámara" : "Apagar cámara"}
+            </button>
+          </div>
+        </div>
+      </main>
     </div>
   );
 };
 
-export default VideoConsulta;
+export default VideoConference;
