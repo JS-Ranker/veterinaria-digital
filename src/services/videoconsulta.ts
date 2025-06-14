@@ -20,7 +20,11 @@ export class AgoraService {
   private setupRemoteHandlers() {
     this.client.on("user-published", async (user, mediaType) => {
       try {
+        // 🚫 No subscribirse a sí mismo para evitar eco
+        if (user.uid === this.client.uid) return;
+
         await this.client.subscribe(user, mediaType);
+
         if (mediaType === "video") {
           const remoteVideoTrack = user.videoTrack as IRemoteVideoTrack;
           const container = document.createElement("div");
@@ -30,6 +34,11 @@ export class AgoraService {
           container.style.marginTop = "10px";
           document.getElementById("remote-container")?.appendChild(container);
           remoteVideoTrack.play(container);
+        }
+
+        if (mediaType === "audio") {
+          const remoteAudioTrack = user.audioTrack;
+          remoteAudioTrack?.play(); // ✅ Reproducir solo audio remoto
         }
       } catch (err) {
         console.error("Error al suscribirse al usuario remoto:", err);
@@ -57,17 +66,28 @@ export class AgoraService {
     try {
       await this.client.join(appId, channel, null, uid);
 
-      const [audioTrack, videoTrack] = await Promise.all([
-        AgoraRTC.createMicrophoneAudioTrack({ encoderConfig: "high_quality" }),
-        AgoraRTC.createCameraVideoTrack(),
-      ]);
-
+      // Crear solo audio primero
+      const audioTrack = await AgoraRTC.createMicrophoneAudioTrack({
+        encoderConfig: "high_quality",
+      });
       this.localAudioTrack = audioTrack;
-      this.localVideoTrack = videoTrack;
 
-      await this.client.publish([audioTrack, videoTrack]);
-
-      videoTrack.play("local-player");
+      let videoTrack: ILocalVideoTrack | null = null;
+      try {
+        // Intentar crear la cámara
+        videoTrack = await AgoraRTC.createCameraVideoTrack();
+        this.localVideoTrack = videoTrack;
+        videoTrack.play("local-player");
+        await this.client.publish([audioTrack, videoTrack]);
+        console.log("📹 Cámara y 🎤 micrófono publicados.");
+      } catch (videoError) {
+        // Si falla la cámara, publicar solo audio
+        console.warn(
+          "⚠️ No se pudo acceder a la cámara. Solo se publicará audio."
+        );
+        this.localVideoTrack = null;
+        await this.client.publish([audioTrack]);
+      }
 
       this.isConnected = true;
     } catch (error) {
