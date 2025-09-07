@@ -1,0 +1,108 @@
+.portada-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.portada-img {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  object-fit: cover;
+}
+ion-content {
+  --background: #d8a7f6; /* Puedes cambiar este color a gusto */
+}
+
+ion-toolbar {
+--background: transparent; /* Hace el fondo del toolbar transparente */
+--color: #5e35b1; /* Aplica al texto, como el título */
+text-align: center;
+}
+
+ion-title {
+font-weight: bold;
+color: #5e35b1; /* Asegura que el título tenga el color morado oscuro */
+}
+ion-toolbar {
+  --background: #5e35b1; /* Fondo morado oscuro */
+}
+
+ion-title {
+  color: white; /* Texto blanco en el título */
+  font-weight: bold; /* Opcional: para darle un toque de negrita */
+}
+
+
+ion-toolbar {
+  --background: #6a1b9a; /* Un color morado oscuro */
+}
+
+.titulo-bienvenida {
+  color: white; /* Asegúrate de que el título sea blanco */
+}
+
+.bienvenida-titulo {
+  font-size: 1.8rem; /* Tamaño de fuente para el título de bienvenida */
+  color: white; /* Texto blanco */
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+ion-button {
+  --background: #6a1b9a; /* Color morado para los botones */
+  --color: white; /* Texto blanco */
+  --border-radius: 10px; /* Bordes redondeados */
+  margin-top: 15px;
+}
+
+ion-button:hover {
+  --background: #9c4dcc; /* Un morado más claro al hacer hover */
+}
+
+.logo-container img {
+  border-radius: 50%; /* Si quieres que el logo sea redondo */
+}
+
+ion-content {
+  color: white; /* Asegura que el texto se vea blanco sobre el fondo */
+}
+
+.boton-login {
+  --border-radius: 20px;
+  width: 200px;
+  max-width: 80%;
+  margin: 20px auto 10px auto;
+  display: block;
+  height: 45px;
+  font-size: 14px;
+  --background: #3880ff;
+  --color: white;
+}
+
+.boton-recuperar {
+  display: block;
+  margin: 0 auto;
+  font-size: 13px;
+  --color: #ffffffcc; // Blanco con transparencia
+  text-decoration: underline;
+}
+
+
+/* Redondear solo los campos de correo y contraseña */
+ion-item {
+--border-radius: 12px; /* Bordes redondeados para los campos */
+margin-bottom: 15px; /* Espacio entre los campos */
+}
+
+ion-input {
+--border-radius: 12px; /* Bordes redondeados para los inputs */
+}
+
+
+
+.logo-barra {
+height: 30px;
+margin-right: 10px;
+vertical-align: middle;
+}

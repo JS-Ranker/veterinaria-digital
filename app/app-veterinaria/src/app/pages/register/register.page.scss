@@ -1,0 +1,131 @@
+/* ==== Estilos de Veterinaria con Tonos Morados ==== */
+ion-content {
+  --background: #f5f0f9; /* Fondo morado muy suave */
+  --padding-start: 10px;
+  --padding-end: 10px;
+}
+
+/* Barra superior */
+ion-toolbar {
+  --background: #6a1b9a; /* Morado oscuro */
+  --color: white;
+}
+
+ion-title {
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Contenedor del formulario */
+.form-container {
+  padding: 16px;
+  max-width: 500px;
+  margin: 20px auto;
+}
+
+
+/* Campos del formulario */
+.custom-item {
+  --background: white;
+  --border-radius: 8px;
+  --padding-start: 12px;
+  --padding-end: 12px;
+  --min-height: 42px; /* Reducir un poco más la altura */
+  margin-bottom: 8px; /* Reducir margen inferior */
+  border: 1px solid #e8e0ee;
+  box-shadow: 0 1px 3px rgba(106, 27, 154, 0.06);
+}
+
+
+ion-label {
+  color: #6a1b9a;
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+
+ion-input {
+  --color: #333333;
+  font-size: 14px;
+  --padding-top: 6px;
+  --padding-bottom: 6px;
+  
+}
+
+/* Icono del campo */
+.field-icon {
+  color: #9c27b0;
+  font-size: 16px;
+  margin-right: 8px;
+}
+
+/* Mensaje de error */
+.error-message {
+  color: #d32f2f;
+  font-size: 11px; /* Fuente más pequeña */
+  margin: -4px 0 6px 16px; /* Margen menor */
+  font-weight: 500;
+}
+
+/* Botones */
+.botones {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Botón registrar */
+.register-button {
+  --background: #7b1fa2;
+  --background-hover: #6a1b9a;
+  --background-activated: #4a148c;
+  --border-radius: 8px;
+  --color: white;
+  font-weight: 600;
+  font-size: 15px;
+  height: 42px;
+  margin-bottom: 4px;
+  box-shadow: 0 3px 6px rgba(123, 31, 162, 0.2);
+}
+
+/* Botón volver */
+.back-button {
+  --background: transparent;
+  --color: #7b1fa2;
+  --border-color: #7b1fa2;
+  --border-style: solid;
+  --border-width: 1px;
+  --border-radius: 8px;
+  height: 36px; /* un poco menos alto */
+  font-weight: 500;
+  font-size: 14px; /* ligeramente menor tamaño de letra */
+}
+
+
+/* Estilo para el alerta de éxito */
+.success-alert {
+  --background: #f3e5f5;
+}
+
+.success-alert .alert-wrapper {
+  border-radius: 12px;
+}
+
+.success-alert .alert-head {
+  color: #6a1b9a;
+}
+
+/* Animaciones suaves */
+ion-item, ion-button {
+  transition: all 0.2s ease;
+}
+
+/* Estilo para los botones de mostrar/ocultar contraseña */
+ion-button[fill="clear"] {
+  --color: #9c27b0;
+  --padding-start: 8px;
+  --padding-end: 8px;
+  font-size: 18px; /* agrandar un pelín el icono para mejor visibilidad */
+}

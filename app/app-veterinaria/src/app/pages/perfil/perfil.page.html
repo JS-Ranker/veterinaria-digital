@@ -1,0 +1,125 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="volverAPrincipal()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      <img src="assets/img/Logo.jpeg" alt="Logo" class="logo-barra" />
+      Perfil de Usuario
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="confirmarCerrarSesion()" size="small">
+        <ion-icon name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Información del Usuario</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form (ngSubmit)="confirmarActualizarPerfil()">
+        <!-- RUT (no editable) -->
+        <ion-item>
+          <ion-label position="floating">RUT</ion-label>
+          <ion-input [(ngModel)]="usuario.rut" name="rut" readonly></ion-input>
+        </ion-item>
+
+        <!-- Nombre -->
+        <ion-item>
+          <ion-label position="floating">Nombre</ion-label>
+          <ion-input [(ngModel)]="usuario.nombre" name="nombre" [readonly]="!editarNombre"></ion-input>
+          <ion-buttons slot="end">
+            <ion-button fill="clear" size="small" (click)="editarNombre = !editarNombre">
+              <ion-icon name="pencil-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-item>
+
+        <!-- Apellido -->
+        <ion-item>
+          <ion-label position="floating">Apellido</ion-label>
+          <ion-input [(ngModel)]="usuario.apellido" name="apellido" [readonly]="!editarApellido"></ion-input>
+          <ion-buttons slot="end">
+            <ion-button fill="clear" size="small" (click)="editarApellido = !editarApellido">
+              <ion-icon name="pencil-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-item>
+
+        <!-- Correo (no editable) -->
+        <ion-item>
+          <ion-label position="floating">Correo</ion-label>
+          <ion-input [(ngModel)]="usuario.email" name="email" readonly></ion-input>
+        </ion-item>
+
+        <!-- Teléfono -->
+        <ion-item>
+          <ion-label position="floating">Teléfono</ion-label>
+          <ion-input [(ngModel)]="usuario.telefono" name="telefono" [readonly]="!editarTelefono"></ion-input>
+          <ion-buttons slot="end">
+            <ion-button fill="clear" size="small" (click)="editarTelefono = !editarTelefono">
+              <ion-icon name="pencil-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-item>
+
+        <!-- Contraseña -->
+        <ion-item>
+          <ion-label position="floating">Contraseña</ion-label>
+          <ion-input [(ngModel)]="usuario.password" name="password" [type]="mostrarPassword ? 'text' : 'password'"></ion-input>
+          <ion-buttons slot="end">
+            <ion-button fill="clear" size="small" (click)="mostrarPassword = !mostrarPassword">
+              <ion-icon [name]="mostrarPassword ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-item>
+
+        <!-- Repetir Contraseña -->
+        <ion-item>
+          <ion-label position="floating">Repetir Contraseña</ion-label>
+          <ion-input [(ngModel)]="repetirPassword" name="repetirPassword" [type]="mostrarPassword ? 'text' : 'password'"></ion-input>
+        </ion-item>
+
+        <!-- Botón Actualizar -->
+        <ion-button expand="full" type="submit" color="primary">Actualizar</ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Mis Mascotas -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Mis Mascotas</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngIf="mascotas.length === 0">
+          <ion-label>No tienes mascotas registradas.</ion-label>
+        </ion-item>
+        <ion-item *ngFor="let mascota of mascotas">
+          <ion-label>
+            <h2>{{ mascota.nombre }}</h2>
+            <p>Tipo: {{ mascota.tipo }}</p>
+            <p>Edad: {{ mascota.edad }}</p>
+          </ion-label>
+
+          <ion-button fill="clear" color="danger" class="boton-estilo" (click)="eliminarMascota(mascota)">Eliminar</ion-button>
+          <ion-button color="primary" class="boton-estilo" (click)="verHistorialMascota(mascota)">Ver Historial</ion-button>
+        </ion-item>
+      </ion-list>
+
+      <ion-button class="boton-estilo" (click)="irAMascotas()">Agregar Mascota</ion-button>
+
+      <ion-button expand="full" color="secondary" (click)="volverAPrincipal()">
+        <ion-icon name="home-outline" slot="start"></ion-icon>
+        Volver a Principal
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
